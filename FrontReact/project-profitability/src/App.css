@@ -1,0 +1,16 @@
+body {
+  background-color: white;
+  font-family: "Times New Roman", Georgia, Serif;
+}
+
+.app-wrapper {
+  display: grid;
+  grid-template-areas:
+          "h h"
+          "n b";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+  font-weight: 200;
+}
+
+
