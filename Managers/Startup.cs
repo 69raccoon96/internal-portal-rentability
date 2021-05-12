@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using JsonConverter = Newtonsoft.Json.JsonConverter;
 
 namespace Managers
 {
@@ -31,7 +32,7 @@ namespace Managers
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            //TODO раскидать эндпоинты по файлам
             app.UseRouting();
             app.UseCors(options => options.AllowAnyOrigin());  
             var db = new DataBase();
@@ -53,6 +54,12 @@ namespace Managers
                     {
                         await context.Response.WriteAsync(JsonConvert.SerializeObject(db.GetUsers()));
                     });
+                endpoints.MapGet("/projects",
+                    async context =>
+                    {
+                        await context.Response.WriteAsync(JsonConvert.SerializeObject(db.GetProjects(context.Request)));
+                    });
+
             });
         }
     }

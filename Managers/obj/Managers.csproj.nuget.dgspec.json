@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ivan0\\RiderProjects\\Managers\\Managers\\Managers.csproj": {}
+    "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\Managers\\Managers.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ivan0\\RiderProjects\\Managers\\Managers\\Managers.csproj": {
+    "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\Managers\\Managers.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivan0\\RiderProjects\\Managers\\Managers\\Managers.csproj",
+        "projectUniqueName": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\Managers\\Managers.csproj",
         "projectName": "Managers",
-        "projectPath": "C:\\Users\\ivan0\\RiderProjects\\Managers\\Managers\\Managers.csproj",
+        "projectPath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\Managers\\Managers.csproj",
         "packagesPath": "C:\\Users\\ivan0\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivan0\\RiderProjects\\Managers\\Managers\\obj\\",
+        "outputPath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\Managers\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -70,7 +70,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.203\\RuntimeIdentifierGraph.json"
         }
       }
     }

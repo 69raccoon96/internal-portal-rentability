@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YS7NXpzK95Y81Kk4FhVCVBURGWSNlTIRpapL9KlrZAcMDYtpVFaMLNLRuQ6XlICdH2doCUloh4TfdlwLYFPnWw==",
+  "dgSpecHash": "jg6erBfBVD7nckg0cOF3hArJiOgDCalN31lkXaWg1C1dyUaSQ9AapdHSMeLH+eQzHoCztoE5iKcKPSw/x2d44Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ivan0\\RiderProjects\\Managers\\Managers\\Managers.csproj",
+  "projectFilePath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\Managers\\Managers.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ivan0\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\ivan0\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
