@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c267af1-1687-4b87-aa07-934334b1a8db" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/project-profitability/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/project-profitability/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project-profitability/src/api/projectsApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/project-profitability/src/api/projectsApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Managers/obj/Debug/net5.0/Managers.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../Managers/obj/Debug/net5.0/Managers.assets.cache" afterDir="false" />
-    </list>
+    <list default="true" id="3c267af1-1687-4b87-aa07-934334b1a8db" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,6 +53,7 @@
       <option name="presentableId" value="Default" />
       <updated>1620473291304</updated>
       <workItem from="1620473292813" duration="1543000" />
+      <workItem from="1620851262088" duration="395000" />
     </task>
     <servers />
   </component>
