@@ -18,6 +18,10 @@ namespace Managers
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(c =>  
+            {  
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin());  
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -29,6 +33,7 @@ namespace Managers
             }
 
             app.UseRouting();
+            app.UseCors(options => options.AllowAnyOrigin());  
             var db = new DataBase();
             app.UseEndpoints(endpoints =>
             {
