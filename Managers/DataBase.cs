@@ -61,5 +61,21 @@ namespace Managers
             var collection = db.GetCollection<Project>("Projects");
             return collection.Find(x => x.Title.ToUpper().Contains(req_txt.ToUpper())).ToList();
         }
+
+        public List<Project> GetProjectsById(HttpRequest request)
+        {
+            string req_txt;
+            using (StreamReader reader = new StreamReader(request.Body))
+            {
+                req_txt = reader.ReadToEndAsync().Result;
+            }
+
+            req_txt = req_txt.Split("----------------------------")[1];
+            req_txt = req_txt.Split("\r\n")[3];
+            var id = int.Parse(req_txt);
+            var db = Client.GetDatabase("Managers");
+            var collection = db.GetCollection<Project>("Projects");
+            return collection.Find(x => x.Id == id).ToList();
+        }
     }
 }

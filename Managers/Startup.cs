@@ -55,6 +55,11 @@ namespace Managers
                     });
                 endpoints.MapGet("/projects",
                     async context => { await context.Response.WriteAsync(SomeMethod(context, db)); });
+                endpoints.MapGet("/projectcard",
+                    async context =>
+                    {
+                        await context.Response.WriteAsync(JsonConvert.SerializeObject(db.GetProjectsById(context.Request)));
+                    });
             });
         }
 
