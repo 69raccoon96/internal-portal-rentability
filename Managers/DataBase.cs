@@ -67,7 +67,15 @@ namespace Managers
 
         public List<Project> GetProjectsCards(HttpRequest request)
         {
-            var parameters = request.ReadFormAsync().Result;
+            try
+            {
+                var parameters = request.ReadFormAsync().Result;
+
+            }
+            catch
+            {
+                
+            }
             var db = Client.GetDatabase("Managers");
             var collection = db.GetCollection<Project>("Projects");
             return collection.Find(_ => true).ToListAsync().Result;
