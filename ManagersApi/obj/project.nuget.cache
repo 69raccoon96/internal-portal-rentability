@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "rV6gujjT6W0o4bhKB7YjVhq7ZaPSeEPyaBiJky03UosARQpBb6T5QvNI//x50EvlI0lLlsA8EN0GtxFASls+9g==",
+  "dgSpecHash": "PHUH4tfauRhnWJREICo6oQ7lFQ+lDc6/etHQ3KmT0+31KGk+tYcHRpjE6B2TAqj+qBD2W3Ja03CxpGHfi/UmFQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ivan0\\RiderProjects\\Auth2\\ManagersApi\\ManagersApi.csproj",
+  "projectFilePath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ivan0\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\ivan0\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",

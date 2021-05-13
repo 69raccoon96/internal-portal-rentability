@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ivan0\\RiderProjects\\Auth2\\ManagersApi\\ManagersApi.csproj": {}
+    "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ivan0\\RiderProjects\\Auth2\\ManagersApi\\ManagersApi.csproj": {
+    "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ivan0\\RiderProjects\\Auth2\\ManagersApi\\ManagersApi.csproj",
+        "projectUniqueName": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
         "projectName": "ManagersApi",
-        "projectPath": "C:\\Users\\ivan0\\RiderProjects\\Auth2\\ManagersApi\\ManagersApi.csproj",
+        "projectPath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
         "packagesPath": "C:\\Users\\ivan0\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ivan0\\RiderProjects\\Auth2\\ManagersApi\\obj\\",
+        "outputPath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
