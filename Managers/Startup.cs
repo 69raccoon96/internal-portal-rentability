@@ -34,7 +34,7 @@ namespace Managers
             app.UseRouting();
             app.UseCors(options => options.AllowAnyOrigin());
             var db = new DataBase();
-
+            //TODO вынести сериализацию json
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello World!"); });
@@ -60,6 +60,10 @@ namespace Managers
                     {
                         await context.Response.WriteAsync(JsonConvert.SerializeObject(db.GetProjectsById(context.Request)));
                     });
+                endpoints.MapGet("/projectscards", async context =>
+                {
+                    await context.Response.WriteAsync(JsonConvert.SerializeObject(db.GetProjectsCards(context.Request)));
+                });
             });
         }
 

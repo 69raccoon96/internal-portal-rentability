@@ -11,9 +11,13 @@ namespace Managers
         [BsonRepresentation(BsonType.ObjectId)]
         [JsonIgnore]
         public string _id { get; }
+        [JsonProperty("id")]
         public int Id { get; }
+        [JsonProperty("firstName")]
         public string FirstName { get; }
+        [JsonProperty("lastName")]
         public string LastName { get; }
+        [JsonProperty("imageUrl")]
         public string ImageUrl { get; }
         
 
