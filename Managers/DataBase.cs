@@ -58,7 +58,7 @@ namespace Managers
 
         public List<Project> GetProjectsById(HttpRequest request)
         {
-            var parameters = request.ReadFormAsync().Result;
+            var parameters = request.Query;
             var id = int.Parse(parameters["id"]);
             var db = Client.GetDatabase("Managers");
             var collection = db.GetCollection<Project>("Projects");
