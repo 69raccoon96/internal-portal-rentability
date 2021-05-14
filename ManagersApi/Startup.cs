@@ -28,7 +28,8 @@ namespace ManagersApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "ManagersApi", Version = "v1"}); });
+            services.AddSwaggerGen(
+                c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "ManagersApi", Version = "v1"}); });
             BsonClassMap.RegisterClassMap<CutedProject>(cm =>
             {
                 cm.MapProperty(project => project.Id);

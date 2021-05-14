@@ -5,15 +5,15 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace ManagersApi
 {
     [BsonIgnoreExtraElements]
-    
     public class CutedProject
     {
-        public CutedProject(int id, string title)
+        public CutedProject(int projectId, string projectTitle)
         {
-            Id = id;
-            Title = title;
+            Id = projectId;
+            Title = projectTitle;
         }
-        public int Id { get; }
-        public string Title { get; }
+
+        public int Id { get; set; }
+        public string Title { get; set; }
     }
 }

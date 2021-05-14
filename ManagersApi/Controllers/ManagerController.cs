@@ -14,7 +14,7 @@ namespace ManagersApi.Controllers
         [HttpGet]
         public IEnumerable<Manager> Get()
         {
-            var db  = new DataBase();
+            var db = new DataBase();
             return db.GetManagers();
         }
     }

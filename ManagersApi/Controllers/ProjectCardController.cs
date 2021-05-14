@@ -8,10 +8,14 @@ namespace ManagersApi.Controllers
     public class ProjectCardController : ControllerBase
     {
         [HttpGet]
-        public List<Project> GetProject([FromQuery(Name = "id")] int id)
+        public Project GetProject([FromQuery(Name = "id")] int id)
         {
-            var db  = new DataBase();
-            return db.GetProjectsById(id);
+            var db = new DataBase();
+            var project = db.GetProjectsById(id);
+            if (project == null)
+                return null;
+            project.Modules = db.GetProjectModules(project.ModuleIds);
+            return project;
         }
     }
 }

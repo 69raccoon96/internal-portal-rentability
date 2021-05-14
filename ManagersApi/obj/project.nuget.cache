@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "PHUH4tfauRhnWJREICo6oQ7lFQ+lDc6/etHQ3KmT0+31KGk+tYcHRpjE6B2TAqj+qBD2W3Ja03CxpGHfi/UmFQ==",
+  "dgSpecHash": "bc9r22oRCT8V9rcn+PwLJVpJ3rCAJIYIIFx8DHzhIU74on3YgmM1j+XtfoVkDQ3kd0qNjue22ZNmB8n9+OBsyg==",
   "success": true,
   "projectFilePath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ivan0\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
+    "C:\\Users\\ivan0\\.nuget\\packages\\macross.json.extensions\\2.1.0-beta2\\macross.json.extensions.2.1.0-beta2.nupkg.sha512",
     "C:\\Users\\ivan0\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\ivan0\\.nuget\\packages\\microsoft.netcore.platforms\\2.1.2\\microsoft.netcore.platforms.2.1.2.nupkg.sha512",
     "C:\\Users\\ivan0\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
@@ -19,7 +20,8 @@
     "C:\\Users\\ivan0\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\5.6.3\\swashbuckle.aspnetcore.swaggerui.5.6.3.nupkg.sha512",
     "C:\\Users\\ivan0\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\ivan0\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512",
-    "C:\\Users\\ivan0\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512"
+    "C:\\Users\\ivan0\\.nuget\\packages\\system.text.encoding.codepages\\4.5.1\\system.text.encoding.codepages.4.5.1.nupkg.sha512",
+    "C:\\Users\\ivan0\\.nuget\\packages\\system.text.json\\4.7.0\\system.text.json.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

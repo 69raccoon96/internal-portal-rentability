@@ -13,7 +13,7 @@ namespace ManagersApi.Controllers
         public List<Project> GetProject([FromQuery(Name = "managersId")] int[] managerId,
             [FromQuery(Name = "projectId")] int projectId, [FromQuery(Name = "dateStart")] DateTime dateStart,
             [FromQuery(Name = "dateEnd")] DateTime dateEnd, [FromQuery(Name = "customerId")] int[] customerId,
-            [FromQuery(Name = "type")]ProjectStatus status)
+            [FromQuery(Name = "type")] ProjectStatus status)
         {
             var db = new DataBase();
             var projectsCards = db.GetProjectsCards();

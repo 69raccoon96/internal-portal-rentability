@@ -12,7 +12,7 @@ namespace ManagersApi.Controllers
         [HttpGet]
         public IEnumerable<Customer> Get()
         {
-            var db  = new DataBase();
+            var db = new DataBase();
             return db.GetCustomers();
         }
     }

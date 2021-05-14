@@ -80,3 +80,4 @@ C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\obj\Debu
 C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\obj\Debug\net5.0\ref\ManagersApi.dll
 C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\obj\Debug\net5.0\ManagersApi.pdb
 C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\obj\Debug\net5.0\ManagersApi.genruntimeconfig.cache
+C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\bin\Debug\net5.0\Macross.Json.Extensions.dll
