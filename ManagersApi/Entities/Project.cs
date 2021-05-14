@@ -22,20 +22,26 @@ namespace ManagersApi
         public DateTime DateEnd { get; }
         
         public int CustomerId { get; }
+        
+        public int ManagerId { get; }
+        
+        public ProjectStatus ProjectStatus { get; }
 
-        public Project(string firstName, string lastName, string title, int id, string _id, int overdueTime,
-            int overdueTasks, DateTime dateStart, DateTime dateEnd, int customerId)
+        public Project(string FirstName, string LastName, string Title, int Id, string _id, int OverdueTime,
+            int OverdueTasks, DateTime DateStart, DateTime DateEnd, int CustomerId, int ManagerId, ProjectStatus ProjectStatus)
         {
             this._id = _id;
-            OverdueTime = overdueTime;
-            OverdueTasks = overdueTasks;
-            DateStart = dateStart;
-            DateEnd = dateEnd;
-            CustomerId = customerId;
-            Id = id;
-            FirstName = firstName;
-            LastName = lastName;
-            Title = title;
+            this.OverdueTime = OverdueTime;
+            this.OverdueTasks = OverdueTasks;
+            this.DateStart = DateStart;
+            this.DateEnd = DateEnd;
+            this.CustomerId = CustomerId;
+            this.ManagerId = ManagerId;
+            this.Id = Id;
+            this.FirstName = FirstName;
+            this.LastName = LastName;
+            this.Title = Title;
+            this.ProjectStatus = ProjectStatus;
         } 
     }
 }
