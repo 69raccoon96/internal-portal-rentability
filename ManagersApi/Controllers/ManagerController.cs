@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagersApi.Controllers
@@ -9,6 +10,7 @@ namespace ManagersApi.Controllers
     [Authorize]
     [ApiController]
     [Route("managers")]
+    [EnableCors]
     public class ManagerController : ControllerBase
     {
         //[Authorize]
