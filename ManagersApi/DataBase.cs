@@ -68,5 +68,12 @@ namespace ManagersApi
             var collection = db.GetCollection<ModuleTask>("Tasks");
             return collection.Find(x => taskIds.Contains(x.Id)).ToList();
         }
+
+        public User GetUser(string login, string password)
+        {
+            var db = Client.GetDatabase("Managers");
+            var collection = db.GetCollection<User>("users");
+            return collection.Find(x => x.Login == login && x.Password == password).FirstOrDefault();
+        }
     }
 }

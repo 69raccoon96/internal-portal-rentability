@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ManagersApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("managers")]
     public class ManagerController : ControllerBase

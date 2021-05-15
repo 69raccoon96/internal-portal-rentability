@@ -81,3 +81,10 @@ C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\obj\Debu
 C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\obj\Debug\net5.0\ManagersApi.pdb
 C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\obj\Debug\net5.0\ManagersApi.genruntimeconfig.cache
 C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\bin\Debug\net5.0\Macross.Json.Extensions.dll
+C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\ivan0\RiderProjects\internal-portal-rentability-ii\ManagersApi\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll

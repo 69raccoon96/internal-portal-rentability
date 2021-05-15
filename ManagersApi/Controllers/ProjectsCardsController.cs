@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagersApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("projectscards")]
     public class ProjectsCardsController : ControllerBase

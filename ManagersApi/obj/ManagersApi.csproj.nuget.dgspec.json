@@ -47,6 +47,10 @@
               "target": "Package",
               "version": "[2.1.0-beta2, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
             "MongoDB.Driver": {
               "target": "Package",
               "version": "[2.12.3, )"

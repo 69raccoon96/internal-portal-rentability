@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ManagersApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("customers")]
     public class CustomerController
