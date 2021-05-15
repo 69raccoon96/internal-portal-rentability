@@ -1057,11 +1057,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
+      "projectUniqueName": "C:\\Users\\ivan0\\RiderProjects\\Managers\\ManagersApi\\ManagersApi.csproj",
       "projectName": "ManagersApi",
-      "projectPath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
+      "projectPath": "C:\\Users\\ivan0\\RiderProjects\\Managers\\ManagersApi\\ManagersApi.csproj",
       "packagesPath": "C:\\Users\\ivan0\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\obj\\",
+      "outputPath": "C:\\Users\\ivan0\\RiderProjects\\Managers\\ManagersApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
