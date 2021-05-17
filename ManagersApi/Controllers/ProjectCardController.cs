@@ -17,6 +17,8 @@ namespace ManagersApi.Controllers
             if (project == null)
                 return null;
             project.Modules = db.GetProjectModules(project.ModuleIds);
+            project.Customer = db.GetCustomerById(project.CustomerId);
+            project.Manager = db.GetManagerById(project.ManagerId);
             return project;
         }
     }

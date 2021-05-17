@@ -14,16 +14,20 @@ namespace ManagersApi
         public string _id { get; set; }
 
         public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+        [BsonIgnore]
+        public Customer Customer { get; set; }
+        [BsonIgnore]
+        public Manager Manager { get; set; }
 
         public string Title { get; set; }
         public int OverdueTime { get; set; }
         public int OverdueTasks { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }
+        [JsonIgnore]
 
         public int CustomerId { get; set; }
+        [JsonIgnore]
 
         public int ManagerId { get; set; }
 

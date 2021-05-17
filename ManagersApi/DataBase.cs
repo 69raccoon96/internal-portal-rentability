@@ -75,5 +75,19 @@ namespace ManagersApi
             var collection = db.GetCollection<User>("users");
             return collection.Find(x => x.Login == login && x.Password == password).FirstOrDefault();
         }
+
+        public Manager GetManagerById(int id)
+        {
+            var db = Client.GetDatabase("Managers");
+            var collection = db.GetCollection<Manager>("Managers");
+            return collection.Find(x => x.Id == id).FirstOrDefault();
+        }
+
+        public Customer GetCustomerById(int id)
+        {
+            var db = Client.GetDatabase("Managers");
+            var collection = db.GetCollection<Customer>("Customers");
+            return collection.Find(x => x.Id == id).FirstOrDefault();
+        }
     }
 }

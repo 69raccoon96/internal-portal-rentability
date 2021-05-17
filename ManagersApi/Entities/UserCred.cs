@@ -1,4 +1,4 @@
-﻿namespace Auth.Demo.Controllers
+﻿namespace ManagersApi.Entities
 {
     public class UserCred
     {

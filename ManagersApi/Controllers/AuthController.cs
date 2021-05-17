@@ -1,6 +1,5 @@
-﻿using Auth.Demo;
-using Auth.Demo.Controllers;
-using ManagersApi.Auth;
+﻿using ManagersApi.Auth;
+using ManagersApi.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,9 +21,13 @@ namespace ManagersApi.Controllers
         public IActionResult Authenticate([FromBody] UserCred userCred)
         {
             var token = jWTAuthenticationManager.Authenticate(userCred.Username, userCred.Password);
-
             if (token == null)
                 return Unauthorized();
+            var db = new DataBase();
+            var manager = db.GetManagerById(token.Id);
+            token.LastName = manager.LastName;
+            token.FirstName = manager.FirstName;
+            
 
             return Ok(token);
         }

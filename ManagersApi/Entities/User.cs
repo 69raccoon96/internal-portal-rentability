@@ -20,7 +20,7 @@ namespace ManagersApi
         [BsonIgnore]
         public string Token { get; set; }
         [BsonIgnore]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
         [BsonIgnore]
         public string LastName { get; set; }
     }
