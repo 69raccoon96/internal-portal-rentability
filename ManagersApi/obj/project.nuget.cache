@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "i6xWtyynDAhtrR5n+TInMoPp3fZ2McCDhX0s1bozpaByGxtOtrLle3AMOmtpiYAFI0Jx4rsxhFEOEbsdy5Ld4Q==",
+  "dgSpecHash": "M3pSj4QhMZjSQdK/qkGvpH2Xr860iXR7jO6KQjA4TF1B96OQEioLmLQ+IDG3GYMyKqZGq49kF91Vr/iTlpSoRg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ivan0\\RiderProjects\\Managers\\ManagersApi\\ManagersApi.csproj",
+  "projectFilePath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ivan0\\.nuget\\packages\\dnsclient\\1.4.0\\dnsclient.1.4.0.nupkg.sha512",
     "C:\\Users\\ivan0\\.nuget\\packages\\macross.json.extensions\\2.1.0-beta2\\macross.json.extensions.2.1.0-beta2.nupkg.sha512",

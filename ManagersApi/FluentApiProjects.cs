@@ -7,10 +7,12 @@ namespace ManagersApi
     public class FluentApiProjects
     {
         private IEnumerable<Project> currentData;
+        private DataBase db;
 
         public FluentApiProjects(List<Project> projects)
         {
             currentData = projects.AsEnumerable();
+            db = new DataBase();
         }
 
         public FluentApiProjects SetProjectsBrackets(DateTime dateStart, DateTime dateEnd)
@@ -46,6 +48,16 @@ namespace ManagersApi
         public FluentApiProjects SetProjectStatus(ProjectStatus status)
         {
             currentData = currentData.Where(x => x.ProjectStatus == status);
+            return this;
+        }
+
+        public FluentApiProjects SetManagerData()
+        {
+            foreach (var element in currentData)
+            {
+                element.Manager = db.GetManagerById(element.ManagerId);
+            }
+
             return this;
         }
 

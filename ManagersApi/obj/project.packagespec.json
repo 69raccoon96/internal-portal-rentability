@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "C:\\Users\\ivan0\\RiderProjects\\Managers\\ManagersApi\\ManagersApi.csproj",
+    "projectUniqueName": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
     "projectName": "ManagersApi",
-    "projectPath": "C:\\Users\\ivan0\\RiderProjects\\Managers\\ManagersApi\\ManagersApi.csproj",
-    "outputPath": "C:\\Users\\ivan0\\RiderProjects\\Managers\\ManagersApi\\obj\\",
+    "projectPath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
+    "outputPath": "C:\\Users\\ivan0\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\obj\\",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
