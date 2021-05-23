@@ -65,5 +65,42 @@ namespace ManagersApi
         {
             return currentData.ToList();
         }
+
+        public FluentApiProjects SetCustomerData()
+        {
+            foreach (var element in currentData)
+            {
+                element.Customer = db.GetCustomerById(element.CustomerId);
+            }
+
+            return this;
+        }
+
+        public FluentApiProjects SetOverdueData()
+        {
+            foreach (var project in currentData)
+            {
+                project.Modules = db.GetProjectModules(project.ModuleIds);
+                var overdueTime = 0;
+                var overdueTask = 0;
+                foreach (var module in project.Modules)
+                {
+                    foreach (var task in module.Tasks)
+                    {
+                        var dif = task.TimePlaned - task.Total;
+                        if (dif < 0)
+                        {
+                            overdueTime += dif * -1;
+                            overdueTask++;
+                        }
+                    }
+                }
+
+                project.OverdueTime = overdueTime;
+                project.OverdueTasks = overdueTask;
+            }
+
+            return this;
+        }
     }
 }

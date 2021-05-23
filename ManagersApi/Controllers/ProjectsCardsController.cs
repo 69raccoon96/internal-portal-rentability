@@ -28,6 +28,8 @@ namespace ManagersApi.Controllers
                 .SetProjectStatus(status)
                 .SetProjectsBrackets(dateStart, dateEnd)
                 .SetManagerData()
+                .SetCustomerData()
+                .SetOverdueData()
                 .GetProjects();
             return a;
         }

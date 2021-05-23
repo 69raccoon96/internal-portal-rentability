@@ -6,6 +6,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ManagersApi
 {
+    [BsonIgnoreExtraElements]
     public class Project
     {
         [BsonId]
