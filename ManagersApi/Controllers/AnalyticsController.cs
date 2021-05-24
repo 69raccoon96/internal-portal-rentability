@@ -39,7 +39,7 @@ namespace ManagersApi.Controllers
             };
             return response;
         }
-
+        //TODO подумать как переписать, чтобы не нарушать DRY
         [HttpGet("brief")]
         public List<Brief> GetBrief([FromQuery(Name = "managersId")] int[] managerId)
         {
@@ -71,11 +71,11 @@ namespace ManagersApi.Controllers
         }
 
         [HttpGet("overdue/modules")]
-        public OverdueData GetOverdueDataModules([FromQuery(Name = "projectsId")] int[] projectId)
+        public AnaliticData GetOverdueDataModules([FromQuery(Name = "projectsId")] int[] projectId)
         {
             var db = new DataBase();
             var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
-            var result = new OverdueData();
+            var result = new AnaliticData();
             var planedTime = 0;
             var factTime = 0;
             foreach (var project in projectsCards)
@@ -84,7 +84,7 @@ namespace ManagersApi.Controllers
                 {
                     var (timePlaned, timeFact) = Utilities.GetTimePlanedAndFact(module);
                     if (timeFact <= timePlaned) continue;
-                    var elementToAdd = new AnalyticModule();
+                    var elementToAdd = new AnalyticSubparagraph();
                     planedTime += timePlaned;
                     factTime += timeFact;
                     elementToAdd.Name = module.Name;
@@ -100,11 +100,11 @@ namespace ManagersApi.Controllers
         }
 
         [HttpGet("overdue/tasks")]
-        public OverdueData GetOverdueDataTasks([FromQuery(Name = "projectsId")] int[] projectId)
+        public AnaliticData GetOverdueDataTasks([FromQuery(Name = "projectsId")] int[] projectId)
         {
             var db = new DataBase();
             var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
-            var result = new OverdueData();
+            var result = new AnaliticData();
             var planedTime = 0;
             var factTime = 0;
             foreach (var project in projectsCards)
@@ -115,10 +115,93 @@ namespace ManagersApi.Controllers
                     {
                         planedTime = task.TimePlaned;
                         factTime = task.Total;
-                        result.Data.Add(new AnalyticModule
+                        result.Data.Add(new AnalyticSubparagraph
                             {TimePlaned = task.TimePlaned, TimeSpent = task.Total, Name = task.Name});
                     }
                 }
+            }
+
+            result.FactTime = factTime;
+            result.PlanedTime = planedTime;
+            return result;
+        }
+        [HttpGet("overrated/modules")]
+        public AnaliticData GetOverratedDataModules([FromQuery(Name = "projectsId")] int[] projectId)
+        {
+            var db = new DataBase();
+            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
+            var result = new AnaliticData();
+            var planedTime = 0;
+            var factTime = 0;
+            foreach (var project in projectsCards)
+            {
+                foreach (var module in project.Modules)
+                {
+                    var (timePlaned, timeFact) = Utilities.GetTimePlanedAndFact(module);
+                    if (timeFact >= timePlaned) continue;
+                    var elementToAdd = new AnalyticSubparagraph();
+                    planedTime += timePlaned;
+                    factTime += timeFact;
+                    elementToAdd.Name = module.Name;
+                    elementToAdd.TimePlaned = planedTime;
+                    elementToAdd.TimeSpent = factTime;
+                    result.Data.Add(elementToAdd);
+                }
+            }
+
+            result.FactTime = factTime;
+            result.PlanedTime = planedTime;
+            return result;
+        }
+        [HttpGet("overrated/tasks")]
+        public AnaliticData GetOverratedDataTasks([FromQuery(Name = "projectsId")] int[] projectId)
+        {
+            var db = new DataBase();
+            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
+            var result = new AnaliticData();
+            var planedTime = 0;
+            var factTime = 0;
+            foreach (var project in projectsCards)
+            {
+                foreach (var module in project.Modules)
+                {
+                    foreach (var task in module.Tasks.Where(x => x.TimePlaned > x.Total))
+                    {
+                        planedTime = task.TimePlaned;
+                        factTime = task.Total;
+                        result.Data.Add(new AnalyticSubparagraph
+                            {TimePlaned = task.TimePlaned, TimeSpent = task.Total, Name = task.Name});
+                    }
+                }
+            }
+
+            result.FactTime = factTime;
+            result.PlanedTime = planedTime;
+            return result;
+        }
+        [HttpGet("projects")]
+        public AnaliticData GetOverratedDataProjects([FromQuery(Name = "projectsId")] int[] projectId)
+        {
+            var db = new DataBase();
+            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
+            var result = new AnaliticData();
+            var planedTime = 0;
+            var factTime = 0;
+            foreach (var project in projectsCards)
+            {
+                var analyticModule = new AnalyticSubparagraph();
+                foreach (var module in project.Modules)
+                {
+                    var (timePlaned, timeFact) = Utilities.GetTimePlanedAndFact(module);
+                    if(timeFact <= timePlaned) continue;
+                    analyticModule.TimePlaned += timePlaned;
+                    analyticModule.TimeSpent += timeFact;
+                }
+
+                analyticModule.Name = project.Title;
+                planedTime += analyticModule.TimePlaned;
+                factTime += analyticModule.TimeSpent;
+                result.Data.Add(analyticModule);
             }
 
             result.FactTime = factTime;

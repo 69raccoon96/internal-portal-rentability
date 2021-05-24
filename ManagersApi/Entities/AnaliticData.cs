@@ -2,15 +2,15 @@
 
 namespace ManagersApi.Entities
 {
-    public class OverdueData
+    public class AnaliticData
     {
         public int PlanedTime { get; set; }
         public int FactTime { get; set; }
-        public List<AnalyticModule> Data { get; set; }
+        public List<AnalyticSubparagraph> Data { get; set; }
 
-        public OverdueData()
+        public AnaliticData()
         {
-            Data = new List<AnalyticModule>();
+            Data = new List<AnalyticSubparagraph>();
         }
     }
 }

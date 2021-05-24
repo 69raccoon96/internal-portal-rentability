@@ -1,6 +1,6 @@
 ﻿namespace ManagersApi.Entities
 {
-    public class AnalyticModule
+    public class AnalyticSubparagraph
     {
         public string Name { get; set; }
         public int TimePlaned { get; set; }
