@@ -81,11 +81,9 @@ namespace ManagersApi
             foreach (var project in currentData)
             {
                 project.Modules = db.GetProjectModules(project.ModuleIds);
-                var overdueTimeAndTask = Utilities.GetOverdueTasks(project);
-
-
-                project.OverdueTime = overdueTimeAndTask.Item1;
-                project.OverdueTasks = overdueTimeAndTask.Item2;
+                var (time, task) = Utilities.GetOverdueModules(project);
+                project.OverdueTime = time;
+                project.OverdueTasks = task;
             }
 
             return this;

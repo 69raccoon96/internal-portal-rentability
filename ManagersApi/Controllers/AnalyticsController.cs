@@ -10,7 +10,7 @@ namespace ManagersApi.Controllers
     [Authorize]
     [ApiController]
     [Route("analytics")]
-    public class Analytics
+    public class AnalyticsController
     {
         [HttpGet("general")]
         public General GetGeneral([FromQuery(Name = "managersId")] int[] managerId,
@@ -18,7 +18,7 @@ namespace ManagersApi.Controllers
             [FromQuery(Name = "dateEnd")] DateTime dateEnd, [FromQuery(Name = "customerId")] int[] customerId,
             [FromQuery(Name = "type")] ProjectStatus status)
         {
-            var db = new DataBase();//TODO Перевести на DI контейнер и протащить бд через него
+            var db = new DataBase(); //TODO Перевести на DI контейнер и протащить бд через него
             var projectsCards = db.GetProjectsCards();
             var projectsCleaner = new FluentApiProjects(projectsCards);
             var projects = projectsCleaner
@@ -56,7 +56,7 @@ namespace ManagersApi.Controllers
                 var projectsCount = 0;
                 foreach (var project in managerProjects)
                 {
-                    var (overdueTime, overdueTask) = Utilities.GetOverdueTasks(project);
+                    var (overdueTime, overdueTask) = Utilities.GetOverdueModules(project);
                     if (overdueTime == 0) continue;
                     projectsCount++;
                     allTime += overdueTime;
@@ -65,9 +65,64 @@ namespace ManagersApi.Controllers
                 valueToAdd.OverdueTime = allTime;
                 valueToAdd.ProjectsCount = projectsCount;
                 result.Add(valueToAdd);
-
             }
-            
+
+            return result;
+        }
+
+        [HttpGet("overdue/modules")]
+        public OverdueData GetOverdueDataModules([FromQuery(Name = "projectsId")] int[] projectId)
+        {
+            var db = new DataBase();
+            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
+            var result = new OverdueData();
+            var planedTime = 0;
+            var factTime = 0;
+            foreach (var project in projectsCards)
+            {
+                foreach (var module in project.Modules)
+                {
+                    var (timePlaned, timeFact) = Utilities.GetTimePlanedAndFact(module);
+                    if (timeFact <= timePlaned) continue;
+                    var elementToAdd = new AnalyticModule();
+                    planedTime += timePlaned;
+                    factTime += timeFact;
+                    elementToAdd.Name = module.Name;
+                    elementToAdd.TimePlaned = planedTime;
+                    elementToAdd.TimeSpent = factTime;
+                    result.Data.Add(elementToAdd);
+                }
+            }
+
+            result.FactTime = factTime;
+            result.PlanedTime = planedTime;
+            return result;
+        }
+
+        [HttpGet("overdue/tasks")]
+        public OverdueData GetOverdueDataTasks([FromQuery(Name = "projectsId")] int[] projectId)
+        {
+            var db = new DataBase();
+            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
+            var result = new OverdueData();
+            var planedTime = 0;
+            var factTime = 0;
+            foreach (var project in projectsCards)
+            {
+                foreach (var module in project.Modules)
+                {
+                    foreach (var task in module.Tasks.Where(x => x.TimePlaned < x.Total))
+                    {
+                        planedTime = task.TimePlaned;
+                        factTime = task.Total;
+                        result.Data.Add(new AnalyticModule
+                            {TimePlaned = task.TimePlaned, TimeSpent = task.Total, Name = task.Name});
+                    }
+                }
+            }
+
+            result.FactTime = factTime;
+            result.PlanedTime = planedTime;
             return result;
         }
     }

@@ -43,7 +43,7 @@ namespace ManagersApi
         }
 
         public List<Project> GetProjectsCards()
-        {
+        {//TODO убрать этот метод
             var db = Client.GetDatabase("Managers");
             var collection = db.GetCollection<Project>("Projects");
             return collection.Find(_ => true).ToListAsync().Result;
