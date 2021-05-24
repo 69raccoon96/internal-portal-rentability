@@ -35,7 +35,7 @@ namespace ManagersApi.Controllers
             var response = new General
             {
                 ManagersIds = projects.Select(x => x.ManagerId).Distinct().ToList(),
-                ProjectIds = projects.Select(x => x.Id).Distinct().ToList()
+                ProjectsIds = projects.Select(x => x.Id).Distinct().ToList()
             };
             return response;
         }
