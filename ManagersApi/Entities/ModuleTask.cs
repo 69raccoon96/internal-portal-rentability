@@ -18,5 +18,7 @@ namespace ManagersApi
         public int Total { get; set; }
 
         public int TimePlaned { get; set; }
+        
+        public bool IsDone { get; set; }
     }
 }

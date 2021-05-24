@@ -89,5 +89,17 @@ namespace ManagersApi
             var collection = db.GetCollection<Customer>("Customers");
             return collection.Find(x => x.Id == id).FirstOrDefault();
         }
+
+        public List<Project> GetAllProjects()
+        {
+            var db = Client.GetDatabase("Managers");
+            var collection = db.GetCollection<Project>("Projects");
+            var projects = collection.Find(_ => true).ToList();
+            foreach (var project in projects)
+            {
+                project.Modules = GetProjectModules(project.ModuleIds);
+            }
+            return projects;
+        }
     }
 }

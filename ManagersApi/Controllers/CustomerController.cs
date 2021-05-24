@@ -9,7 +9,6 @@ namespace ManagersApi.Controllers
     [Route("customers")]
     public class CustomerController
     {
-        //[Authorize]
         [HttpGet]
         public IEnumerable<Customer> Get()
         {

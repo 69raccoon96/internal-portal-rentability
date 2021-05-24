@@ -81,23 +81,11 @@ namespace ManagersApi
             foreach (var project in currentData)
             {
                 project.Modules = db.GetProjectModules(project.ModuleIds);
-                var overdueTime = 0;
-                var overdueTask = 0;
-                foreach (var module in project.Modules)
-                {
-                    foreach (var task in module.Tasks)
-                    {
-                        var dif = task.TimePlaned - task.Total;
-                        if (dif < 0)
-                        {
-                            overdueTime += dif * -1;
-                            overdueTask++;
-                        }
-                    }
-                }
+                var overdueTimeAndTask = Utilities.GetOverdueTasks(project);
 
-                project.OverdueTime = overdueTime;
-                project.OverdueTasks = overdueTask;
+
+                project.OverdueTime = overdueTimeAndTask.Item1;
+                project.OverdueTasks = overdueTimeAndTask.Item2;
             }
 
             return this;
