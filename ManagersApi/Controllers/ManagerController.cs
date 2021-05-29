@@ -14,10 +14,10 @@ namespace ManagersApi.Controllers
     public class ManagerController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<Manager> Get()
+        public IActionResult Get()
         {
             var db = new DataBase();
-            return db.GetManagers();
+            return Ok(db.GetManagers());
         }
     }
 }

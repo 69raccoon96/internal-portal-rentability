@@ -7,13 +7,13 @@ namespace ManagersApi.Controllers
     [Authorize]
     [ApiController]
     [Route("customers")]
-    public class CustomerController
+    public class CustomerController : ControllerBase
     {
         [HttpGet]
-        public IEnumerable<Customer> Get()
+        public IActionResult Get()
         {
             var db = new DataBase();
-            return db.GetCustomers();
+            return Ok(db.GetCustomers());
         }
     }
 }

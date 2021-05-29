@@ -27,7 +27,6 @@ namespace ManagersApi.Controllers
             var manager = db.GetManagerById(token.Id);
             token.LastName = manager.LastName;
             token.FirstName = manager.FirstName;
-            
 
             return Ok(token);
         }

@@ -10,7 +10,7 @@ namespace ManagersApi.Controllers
     public class ProjectCardController : ControllerBase
     {
         [HttpGet]
-        public Project GetProject([FromQuery(Name = "id")] int id)
+        public IActionResult GetProject([FromQuery(Name = "id")] int id)
         {
             var db = new DataBase();
             var project = db.GetProjectsById(id);
@@ -19,7 +19,7 @@ namespace ManagersApi.Controllers
             project.Modules = db.GetProjectModules(project.ModuleIds);
             project.Customer = db.GetCustomerById(project.CustomerId);
             project.Manager = db.GetManagerById(project.ManagerId);
-            return project;
+            return Ok(project);
         }
     }
 }

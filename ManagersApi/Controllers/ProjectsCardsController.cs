@@ -12,16 +12,15 @@ namespace ManagersApi.Controllers
     public class ProjectsCardsController : ControllerBase
     {
         [HttpGet]
-        public List<Project> GetProject([FromQuery(Name = "managersIds")] int[] managerId,
+        public IActionResult GetProject([FromQuery(Name = "managersIds")] int[] managerId,
             [FromQuery(Name = "projectId")] int projectId, [FromQuery(Name = "dateStart")] DateTime dateStart,
             [FromQuery(Name = "dateEnd")] DateTime dateEnd, [FromQuery(Name = "customersIds")] int[] customerId,
             [FromQuery(Name = "type")] ProjectStatus status)
         {
             var db = new DataBase();
-            var projectsCards = db.GetProjectsCards();
+            var projectsCards = db.GetProjectsWithoutModules();
             var projectsCleaner = new FluentApiProjects(projectsCards);
-            var a = projectsCleaner
-                .SetProjectStatus(status)
+            projectsCleaner.SetProjectStatus(status)
                 .SetProjectId(projectId)
                 .SetManagers(managerId)
                 .SetCustomers(customerId)
@@ -29,9 +28,8 @@ namespace ManagersApi.Controllers
                 .SetProjectsBrackets(dateStart, dateEnd)
                 .SetManagerData()
                 .SetCustomerData()
-                .SetOverdueData()
-                .GetProjects();
-            return a;
+                .SetOverdueData();
+            return Ok(projectsCleaner.GetProjects());
         }
     }
 }

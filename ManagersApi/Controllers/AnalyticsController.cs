@@ -10,8 +10,15 @@ namespace ManagersApi.Controllers
     [Authorize]
     [ApiController]
     [Route("analytics")]
-    public class AnalyticsController
+    public class AnalyticsController : ControllerBase
     {
+        private DataBase db;
+
+        public AnalyticsController()
+        {
+            db = new DataBase();
+        }
+
         [HttpGet("general")]
         public General GetGeneral([FromQuery(Name = "managersIds")] int[] managerId,
             [FromQuery(Name = "projectsIds")] int projectId, [FromQuery(Name = "dateStart")] DateTime dateStart,
@@ -19,7 +26,7 @@ namespace ManagersApi.Controllers
             [FromQuery(Name = "type")] ProjectStatus status)
         {
             var db = new DataBase(); //TODO Перевести на DI контейнер и протащить бд через него
-            var projectsCards = db.GetProjectsCards();
+            var projectsCards = db.GetProjectsWithoutModules();
             var projectsCleaner = new FluentApiProjects(projectsCards);
             var projects = projectsCleaner
                 .SetProjectStatus(status)
@@ -39,14 +46,15 @@ namespace ManagersApi.Controllers
             };
             return response;
         }
+
         //TODO подумать как переписать, чтобы не нарушать DRY
         [HttpGet("brief")]
-        public List<Brief> GetBrief([FromQuery(Name = "managersIds")] int[] managerId)
+        public IActionResult GetBrief([FromQuery(Name = "managersIds")] int[] managerId)
         {
             var result = new List<Brief>();
             var db = new DataBase();
             var managers = db.GetManagers().Where(x => managerId.Contains(x.Id)).ToList();
-            var projects = db.GetAllProjects();
+            var projects = db.GetAllProjectsData();
             foreach (var manager in managers)
             {
                 var valueToAdd = new Brief();
@@ -67,18 +75,16 @@ namespace ManagersApi.Controllers
                 result.Add(valueToAdd);
             }
 
-            return result;
+            return Ok(result);
         }
 
         [HttpGet("overdue/modules")]
-        public AnaliticData GetOverdueDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
+        public IActionResult GetOverdueDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
         {
-            var db = new DataBase();
-            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
             var result = new AnaliticData();
             var planedTime = 0;
             var factTime = 0;
-            foreach (var project in projectsCards)
+            foreach (var project in GetClearedProjects(projectId))
             {
                 foreach (var module in project.Modules)
                 {
@@ -97,45 +103,41 @@ namespace ManagersApi.Controllers
 
             result.TimeSpent = factTime;
             result.TimePlaned = planedTime;
-            return result;
+            return Ok(result);
         }
 
         [HttpGet("overdue/tasks")]
-        public AnaliticData GetOverdueDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
+        public IActionResult GetOverdueDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
-            var db = new DataBase();
-            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
             var result = new AnaliticData();
             var planedTime = 0;
             var factTime = 0;
-            foreach (var project in projectsCards)
+            foreach (var project in GetClearedProjects(projectId))
             {
                 foreach (var module in project.Modules)
                 {
                     foreach (var task in module.Tasks.Where(x => x.TimePlaned < x.Total))
                     {
-                        
-                        planedTime = task.TimePlaned;
-                        factTime = task.Total;
-                        result.Data.Add(new AnalyticSubparagraph
-                            {TimePlaned = task.TimePlaned, TimeSpent = task.Total, Name = task.Name, ProjectName = project.Title});
+                        planedTime += task.TimePlaned;
+                        factTime += task.Total;
+                        result.Data.Add(new AnalyticSubparagraph(task.Name, task.TimePlaned, task.Total,
+                            project.Title));
                     }
                 }
             }
 
             result.TimeSpent = factTime;
             result.TimePlaned = planedTime;
-            return result;
+            return Ok(result);
         }
+
         [HttpGet("overrated/modules")]
-        public AnaliticData GetOverratedDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
+        public IActionResult GetOverratedDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
         {
-            var db = new DataBase();
-            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
             var result = new AnaliticData();
             var planedTime = 0;
             var factTime = 0;
-            foreach (var project in projectsCards)
+            foreach (var project in GetClearedProjects(projectId))
             {
                 foreach (var module in project.Modules)
                 {
@@ -154,49 +156,47 @@ namespace ManagersApi.Controllers
 
             result.TimeSpent = factTime;
             result.TimePlaned = planedTime;
-            return result;
+            return Ok(result);
         }
+
         [HttpGet("overrated/tasks")]
-        public AnaliticData GetOverratedDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
+        public IActionResult GetOverratedDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
-            var db = new DataBase();
-            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
             var result = new AnaliticData();
             var planedTime = 0;
             var factTime = 0;
-            foreach (var project in projectsCards)
+            foreach (var project in GetClearedProjects(projectId))
             {
                 foreach (var module in project.Modules)
                 {
                     foreach (var task in module.Tasks.Where(x => x.TimePlaned > x.Total))
                     {
-                        planedTime = task.TimePlaned;
-                        factTime = task.Total;
-                        result.Data.Add(new AnalyticSubparagraph
-                            {TimePlaned = task.TimePlaned, TimeSpent = task.Total, Name = task.Name, ProjectName = project.Title});
+                        planedTime += task.TimePlaned;
+                        factTime += task.Total;
+                        result.Data.Add(new AnalyticSubparagraph(task.Name, task.TimePlaned, task.Total,
+                            project.Title));
                     }
                 }
             }
 
             result.TimeSpent = factTime;
             result.TimePlaned = planedTime;
-            return result;
+            return Ok(result);
         }
+
         [HttpGet("projects")]
-        public AnaliticData GetOverratedDataProjects([FromQuery(Name = "projectsIds")] int[] projectId)
+        public IActionResult GetOverratedDataProjects([FromQuery(Name = "projectsIds")] int[] projectId)
         {
-            var db = new DataBase();
-            var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
             var result = new AnaliticData();
             var planedTime = 0;
             var factTime = 0;
-            foreach (var project in projectsCards)
+            foreach (var project in GetClearedProjects(projectId))
             {
                 var analyticModule = new AnalyticSubparagraph();
                 foreach (var module in project.Modules)
                 {
                     var (timePlaned, timeFact) = Utilities.GetTimePlanedAndFact(module);
-                    if(timeFact <= timePlaned) continue;
+                    if (timeFact <= timePlaned) continue;
                     analyticModule.TimePlaned += timePlaned;
                     analyticModule.TimeSpent += timeFact;
                 }
@@ -209,7 +209,14 @@ namespace ManagersApi.Controllers
 
             result.TimeSpent = factTime;
             result.TimePlaned = planedTime;
-            return result;
+            return Ok(result);
+        }
+
+        private List<Project> GetClearedProjects(int[] projectsIds)
+        {
+            var projects = db.GetAllProjectsData();
+            var projectCleaner = new FluentApiProjects(projects);
+            return projectCleaner.SetProjectId(projectsIds).GetProjects();
         }
     }
 }
