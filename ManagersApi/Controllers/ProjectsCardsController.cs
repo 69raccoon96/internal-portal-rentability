@@ -12,9 +12,9 @@ namespace ManagersApi.Controllers
     public class ProjectsCardsController : ControllerBase
     {
         [HttpGet]
-        public List<Project> GetProject([FromQuery(Name = "managersId")] int[] managerId,
+        public List<Project> GetProject([FromQuery(Name = "managersIds")] int[] managerId,
             [FromQuery(Name = "projectId")] int projectId, [FromQuery(Name = "dateStart")] DateTime dateStart,
-            [FromQuery(Name = "dateEnd")] DateTime dateEnd, [FromQuery(Name = "customerId")] int[] customerId,
+            [FromQuery(Name = "dateEnd")] DateTime dateEnd, [FromQuery(Name = "customersIds")] int[] customerId,
             [FromQuery(Name = "type")] ProjectStatus status)
         {
             var db = new DataBase();

@@ -13,9 +13,9 @@ namespace ManagersApi.Controllers
     public class AnalyticsController
     {
         [HttpGet("general")]
-        public General GetGeneral([FromQuery(Name = "managersId")] int[] managerId,
-            [FromQuery(Name = "projectId")] int projectId, [FromQuery(Name = "dateStart")] DateTime dateStart,
-            [FromQuery(Name = "dateEnd")] DateTime dateEnd, [FromQuery(Name = "customerId")] int[] customerId,
+        public General GetGeneral([FromQuery(Name = "managersIds")] int[] managerId,
+            [FromQuery(Name = "projectsIds")] int projectId, [FromQuery(Name = "dateStart")] DateTime dateStart,
+            [FromQuery(Name = "dateEnd")] DateTime dateEnd, [FromQuery(Name = "customersIds")] int[] customerId,
             [FromQuery(Name = "type")] ProjectStatus status)
         {
             var db = new DataBase(); //TODO Перевести на DI контейнер и протащить бд через него
@@ -41,7 +41,7 @@ namespace ManagersApi.Controllers
         }
         //TODO подумать как переписать, чтобы не нарушать DRY
         [HttpGet("brief")]
-        public List<Brief> GetBrief([FromQuery(Name = "managersId")] int[] managerId)
+        public List<Brief> GetBrief([FromQuery(Name = "managersIds")] int[] managerId)
         {
             var result = new List<Brief>();
             var db = new DataBase();
@@ -71,7 +71,7 @@ namespace ManagersApi.Controllers
         }
 
         [HttpGet("overdue/modules")]
-        public AnaliticData GetOverdueDataModules([FromQuery(Name = "projectsId")] int[] projectId)
+        public AnaliticData GetOverdueDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var db = new DataBase();
             var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
@@ -101,7 +101,7 @@ namespace ManagersApi.Controllers
         }
 
         [HttpGet("overdue/tasks")]
-        public AnaliticData GetOverdueDataTasks([FromQuery(Name = "projectsId")] int[] projectId)
+        public AnaliticData GetOverdueDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var db = new DataBase();
             var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
@@ -128,7 +128,7 @@ namespace ManagersApi.Controllers
             return result;
         }
         [HttpGet("overrated/modules")]
-        public AnaliticData GetOverratedDataModules([FromQuery(Name = "projectsId")] int[] projectId)
+        public AnaliticData GetOverratedDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var db = new DataBase();
             var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
@@ -157,7 +157,7 @@ namespace ManagersApi.Controllers
             return result;
         }
         [HttpGet("overrated/tasks")]
-        public AnaliticData GetOverratedDataTasks([FromQuery(Name = "projectsId")] int[] projectId)
+        public AnaliticData GetOverratedDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var db = new DataBase();
             var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();
@@ -183,7 +183,7 @@ namespace ManagersApi.Controllers
             return result;
         }
         [HttpGet("projects")]
-        public AnaliticData GetOverratedDataProjects([FromQuery(Name = "projectsId")] int[] projectId)
+        public AnaliticData GetOverratedDataProjects([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var db = new DataBase();
             var projectsCards = db.GetAllProjects().Where(x => projectId.Contains(x.Id)).ToList();

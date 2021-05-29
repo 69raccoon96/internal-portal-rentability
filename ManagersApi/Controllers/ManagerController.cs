@@ -13,7 +13,6 @@ namespace ManagersApi.Controllers
     [EnableCors]
     public class ManagerController : ControllerBase
     {
-        //[Authorize]
         [HttpGet]
         public IEnumerable<Manager> Get()
         {
