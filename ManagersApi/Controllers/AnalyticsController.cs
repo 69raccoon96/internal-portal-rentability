@@ -90,12 +90,13 @@ namespace ManagersApi.Controllers
                     elementToAdd.Name = module.Name;
                     elementToAdd.TimePlaned = planedTime;
                     elementToAdd.TimeSpent = factTime;
+                    elementToAdd.ProjectName = project.Title;
                     result.Data.Add(elementToAdd);
                 }
             }
 
-            result.FactTime = factTime;
-            result.PlanedTime = planedTime;
+            result.TimeSpent = factTime;
+            result.TimePlaned = planedTime;
             return result;
         }
 
@@ -113,16 +114,17 @@ namespace ManagersApi.Controllers
                 {
                     foreach (var task in module.Tasks.Where(x => x.TimePlaned < x.Total))
                     {
+                        
                         planedTime = task.TimePlaned;
                         factTime = task.Total;
                         result.Data.Add(new AnalyticSubparagraph
-                            {TimePlaned = task.TimePlaned, TimeSpent = task.Total, Name = task.Name});
+                            {TimePlaned = task.TimePlaned, TimeSpent = task.Total, Name = task.Name, ProjectName = project.Title});
                     }
                 }
             }
 
-            result.FactTime = factTime;
-            result.PlanedTime = planedTime;
+            result.TimeSpent = factTime;
+            result.TimePlaned = planedTime;
             return result;
         }
         [HttpGet("overrated/modules")]
@@ -142,6 +144,7 @@ namespace ManagersApi.Controllers
                     var elementToAdd = new AnalyticSubparagraph();
                     planedTime += timePlaned;
                     factTime += timeFact;
+                    elementToAdd.ProjectName = project.Title;
                     elementToAdd.Name = module.Name;
                     elementToAdd.TimePlaned = planedTime;
                     elementToAdd.TimeSpent = factTime;
@@ -149,8 +152,8 @@ namespace ManagersApi.Controllers
                 }
             }
 
-            result.FactTime = factTime;
-            result.PlanedTime = planedTime;
+            result.TimeSpent = factTime;
+            result.TimePlaned = planedTime;
             return result;
         }
         [HttpGet("overrated/tasks")]
@@ -170,13 +173,13 @@ namespace ManagersApi.Controllers
                         planedTime = task.TimePlaned;
                         factTime = task.Total;
                         result.Data.Add(new AnalyticSubparagraph
-                            {TimePlaned = task.TimePlaned, TimeSpent = task.Total, Name = task.Name});
+                            {TimePlaned = task.TimePlaned, TimeSpent = task.Total, Name = task.Name, ProjectName = project.Title});
                     }
                 }
             }
 
-            result.FactTime = factTime;
-            result.PlanedTime = planedTime;
+            result.TimeSpent = factTime;
+            result.TimePlaned = planedTime;
             return result;
         }
         [HttpGet("projects")]
@@ -204,8 +207,8 @@ namespace ManagersApi.Controllers
                 result.Data.Add(analyticModule);
             }
 
-            result.FactTime = factTime;
-            result.PlanedTime = planedTime;
+            result.TimeSpent = factTime;
+            result.TimePlaned = planedTime;
             return result;
         }
     }

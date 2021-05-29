@@ -13,6 +13,7 @@ namespace ManagersApi.Controllers
         public List<CutedProject> GetProjects([FromQuery(Name = "partOfTheName")] string name)
         {
             var db = new DataBase();
+            name ??= "";
             return db.GetProjects(name);
         }
     }
