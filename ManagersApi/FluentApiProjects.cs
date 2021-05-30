@@ -40,7 +40,7 @@ namespace ManagersApi
 
         public FluentApiProjects SetProjectId(params int[] id)
         {
-            if (id != default)
+            if (id.Length != 0)
                 currentData = currentData.Where(x => id.Contains(x.Id));
             return this;
         }
