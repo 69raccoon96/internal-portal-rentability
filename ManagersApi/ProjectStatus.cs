@@ -8,7 +8,9 @@ namespace ManagersApi
     [Flags]
     public enum ProjectStatus
     {
+        [EnumMember(Value = "Undefined")] Undefined,
         [EnumMember(Value = "Active")] Active,
-        [EnumMember(Value = "Inactive")] Inactive
+        [EnumMember(Value = "Inactive")] Inactive,
+        
     }
 }

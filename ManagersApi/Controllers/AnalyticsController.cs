@@ -12,7 +12,7 @@ namespace ManagersApi.Controllers
     [Route("analytics")]
     public class AnalyticsController : ControllerBase
     {
-        private DataBase db;
+        private DataBase db;//TODO Перевести на DI контейнер и протащить бд через него
 
         public AnalyticsController()
         {
@@ -21,11 +21,10 @@ namespace ManagersApi.Controllers
 
         [HttpGet("general")]
         public General GetGeneral([FromQuery(Name = "managersIds")] int[] managerId,
-            [FromQuery(Name = "projectsIds")] int projectId, [FromQuery(Name = "dateStart")] DateTime dateStart,
+            [FromQuery(Name = "projectsIds")] int[] projectId, [FromQuery(Name = "dateStart")] DateTime dateStart,
             [FromQuery(Name = "dateEnd")] DateTime dateEnd, [FromQuery(Name = "customersIds")] int[] customerId,
             [FromQuery(Name = "type")] ProjectStatus status)
-        {
-            var db = new DataBase(); //TODO Перевести на DI контейнер и протащить бд через него
+        { 
             var projectsCards = db.GetProjectsWithoutModules();
             var projectsCleaner = new FluentApiProjects(projectsCards);
             var projects = projectsCleaner

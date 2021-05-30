@@ -47,7 +47,8 @@ namespace ManagersApi
 
         public FluentApiProjects SetProjectStatus(ProjectStatus status)
         {
-            currentData = currentData.Where(x => x.ProjectStatus == status);
+            if(status != ProjectStatus.Undefined)
+                currentData = currentData.Where(x => x.ProjectStatus == status);
             return this;
         }
 
