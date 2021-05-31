@@ -48,7 +48,8 @@ namespace ManagersApi
             {
                 cm.MapProperty(project => project.Id);
                 cm.MapProperty(project => project.Title);
-                cm.MapCreator(project => new CutProject(project.Id, project.Title));
+                cm.MapProperty(project => project.ManagerId);
+                cm.MapCreator(project => new CutProject(project.Id, project.Title, project.ManagerId));
             });
             var tokenKey = "This is my test private key";
             var key = Encoding.ASCII.GetBytes(tokenKey);

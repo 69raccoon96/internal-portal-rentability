@@ -26,7 +26,7 @@ namespace ManagersApi.Controllers
             if (ident == null)
                 BadRequest();
             if (role == UserType.Manager) 
-                projects = projects.Where(x => x.Id == id).ToList();
+                projects = projects.Where(x => x.ManagerId == id).ToList();
             return Ok(projects);
         }
     }
