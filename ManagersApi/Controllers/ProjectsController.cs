@@ -16,6 +16,11 @@ namespace ManagersApi.Controllers
         public ProjectsController(IDataBase db) : base(db)
         {
         }
+        /// <summary>
+        /// Validate user and get cutted projects
+        /// </summary>
+        /// <param name="name">Part of project name</param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetProjects([FromQuery(Name = "partOfTheName")] string name)
         {

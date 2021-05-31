@@ -13,6 +13,10 @@ namespace ManagersApi.Controllers
         public CustomerController(IDataBase db) : base(db)
         {
         }
+        /// <summary>
+        /// Validate user and return all customers
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {

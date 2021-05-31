@@ -16,6 +16,16 @@ namespace ManagersApi.Controllers
         public ProjectsCardsController(IDataBase db) : base(db)
         {
         }
+        /// <summary>
+        /// Validate user and filter projects with parameters
+        /// </summary>
+        /// <param name="managersIds">Managers IDs</param>
+        /// <param name="projectsIds">Projects IDs</param>
+        /// <param name="dateStart">Left border</param>
+        /// <param name="dateEnd">Right border</param>
+        /// <param name="customersIds">Customers IDs</param>
+        /// <param name="status">Status of project</param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetProject([FromQuery(Name = "managersIds")] int[] managersIds,
             [FromQuery(Name = "projectsIds")] int[] projectsIds, [FromQuery(Name = "dateStart")] DateTime dateStart,

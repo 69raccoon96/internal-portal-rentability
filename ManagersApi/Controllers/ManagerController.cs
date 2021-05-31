@@ -18,7 +18,10 @@ namespace ManagersApi.Controllers
         public ManagerController(IDataBase db) : base(db)
         {
         }
-
+        /// <summary>
+        /// Validate user and return all projects which current user can get
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {

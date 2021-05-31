@@ -17,7 +17,16 @@ namespace ManagersApi.Controllers
         public AnalyticsController(IDataBase db) : base(db)
         {
         }
- 
+        /// <summary>
+        /// Validate user and filter projects with parameters
+        /// </summary>
+        /// <param name="managerId">Managers IDs</param>
+        /// <param name="projectId">Projects IDs</param>
+        /// <param name="dateStart">Left border</param>
+        /// <param name="dateEnd">Right border</param>
+        /// <param name="customerId">Customers IDs</param>
+        /// <param name="status">Status of project</param>
+        /// <returns></returns>
         [HttpGet("general")]
         public General GetGeneral([FromQuery(Name = "managersIds")] int[] managerId,
             [FromQuery(Name = "projectsIds")] int[] projectId, [FromQuery(Name = "dateStart")] DateTime dateStart,
@@ -50,6 +59,11 @@ namespace ManagersApi.Controllers
             };
             return response;
         }
+        /// <summary>
+        /// Calculate overdue time and count of overdue projects for every manager
+        /// </summary>
+        /// <param name="managerId">Requested managers</param>
+        /// <returns></returns>
         [HttpGet("brief")]
         public IActionResult GetBrief([FromQuery(Name = "managersIds")] int[] managerId)
         {
@@ -83,7 +97,11 @@ namespace ManagersApi.Controllers
 
             return Ok(result);
         }
-
+        /// <summary>
+        /// Count overdue for modules
+        /// </summary>
+        /// <param name="projectId"> requested projects</param>
+        /// <returns></returns>
         [HttpGet("overdue/modules")]
         public IActionResult GetOverdueDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
         {
@@ -94,7 +112,11 @@ namespace ManagersApi.Controllers
                 BadRequest();
             return Ok(GetDataForModules(projectId,filter, id, role));
         }
-
+        /// <summary>
+        /// Count overdue for tasks
+        /// </summary>
+        /// <param name="projectId"> requested projects</param>
+        /// <returns></returns>
         [HttpGet("overdue/tasks")]
         public IActionResult GetOverdueDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
@@ -105,7 +127,11 @@ namespace ManagersApi.Controllers
                 BadRequest();
             return Ok(GetDataForTasks(projectId, filter, id, role));
         }
-
+        /// <summary>
+        /// Count overrated for modules
+        /// </summary>
+        /// <param name="projectId"> requested projects</param>
+        /// <returns></returns>
         [HttpGet("overrated/modules")]
         public IActionResult GetOverratedDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
         {
@@ -116,7 +142,11 @@ namespace ManagersApi.Controllers
                 BadRequest();
             return Ok(GetDataForModules(projectId,filter, id, role));
         }
-
+        /// <summary>
+        /// Count overrated for tasks
+        /// </summary>
+        /// <param name="projectId"> requested projects</param>
+        /// <returns></returns>
         [HttpGet("overrated/tasks")]
         public IActionResult GetOverratedDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
@@ -127,7 +157,11 @@ namespace ManagersApi.Controllers
                 BadRequest();
             return Ok(GetDataForTasks(projectId, filter, id, role));
         }
-
+        /// <summary>
+        /// Count overrated for project
+        /// </summary>
+        /// <param name="projectId">Requested project</param>
+        /// <returns></returns>
         [HttpGet("projects")]
         public IActionResult GetOverratedDataProjects([FromQuery(Name = "projectsIds")] int[] projectId)
         {

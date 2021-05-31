@@ -15,6 +15,11 @@ namespace ManagersApi.Controllers
         public ProjectCardController(IDataBase db) : base(db)
         {
         }
+        /// <summary>
+        /// Validate user and return project by ID
+        /// </summary>
+        /// <param name="id">ID of project</param>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetProject([FromQuery(Name = "id")] int id)
         {

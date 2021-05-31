@@ -1,4 +1,4 @@
-﻿using ManagersApi.Auth;
+﻿using ManagersApi.Authorization;
 using ManagersApi.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
