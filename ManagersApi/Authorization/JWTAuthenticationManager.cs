@@ -10,14 +10,14 @@ namespace ManagersApi.Auth
 {
     public class JWTAuthenticationManager
     {
-        private readonly DataBase db;
+        private readonly MongoDB db;
 
         private readonly string tokenKey;
 
         public JWTAuthenticationManager(string tokenKey)
         {
             this.tokenKey = tokenKey;
-            db = new DataBase();
+            db = new MongoDB();
         }
         
         public User Authenticate(string username, string password)
@@ -39,7 +39,8 @@ namespace ManagersApi.Auth
                 Subject = new ClaimsIdentity(
                     new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, username)
+                        new Claim(ClaimTypes.Name, username),
+
                     }),
                 Expires = expires.AddYears(2),
                 SigningCredentials = new SigningCredentials(

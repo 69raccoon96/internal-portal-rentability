@@ -5,13 +5,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ManagersApi
 {
+    [BsonIgnoreExtraElements]
+    [BsonNoId]
     public class Module
     {
-        [JsonIgnoreAttribute]
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string _id { get; set; }
-
         [JsonIgnore] public int Id { get; set; }
         [JsonIgnore] public int[] TasksId { get; set; }
 

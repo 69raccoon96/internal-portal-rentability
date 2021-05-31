@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ManagersApi.DataBase;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
@@ -11,12 +12,14 @@ namespace ManagersApi.Controllers
     [ApiController]
     [Route("managers")]
     [EnableCors]
-    public class ManagerController : ControllerBase
+    public class ManagerController : BaseControllerWithDb
     {
+        public ManagerController(IDataBase db) : base(db)
+        {
+        }
         [HttpGet]
         public IActionResult Get()
         {
-            var db = new DataBase();
             return Ok(db.GetManagers());
         }
     }

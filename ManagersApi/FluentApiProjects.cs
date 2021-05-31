@@ -7,12 +7,12 @@ namespace ManagersApi
     public class FluentApiProjects
     {
         private IEnumerable<Project> currentData;
-        private DataBase db;
+        private MongoDB db;
 
         public FluentApiProjects(List<Project> projects)
         {
             currentData = projects.AsEnumerable();
-            db = new DataBase();
+            db = new MongoDB();
         }
 
         public FluentApiProjects SetProjectsBrackets(DateTime dateStart, DateTime dateEnd)

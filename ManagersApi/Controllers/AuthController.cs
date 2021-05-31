@@ -23,7 +23,7 @@ namespace ManagersApi.Controllers
             var token = jWTAuthenticationManager.Authenticate(userCred.Username, userCred.Password);
             if (token == null)
                 return Unauthorized();
-            var db = new DataBase();
+            var db = new MongoDB();
             var manager = db.GetManagerById(token.Id);
             token.LastName = manager.LastName;
             token.FirstName = manager.FirstName;

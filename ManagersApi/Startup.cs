@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ManagersApi.Auth;
+using ManagersApi.DataBase;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +32,7 @@ namespace ManagersApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IDataBase, MongoDB>();
             services.AddCors(c => { c.AddPolicy("AllowOrigin", 
                 options => 
                     options.AllowAnyOrigin()
@@ -38,14 +40,15 @@ namespace ManagersApi
                         .AllowAnyMethod()
                         
             ); });
+            
             services.AddControllers();
             services.AddSwaggerGen(
                 c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "ManagersApi", Version = "v1"}); });
-            BsonClassMap.RegisterClassMap<CutedProject>(cm =>
+            BsonClassMap.RegisterClassMap<CutProject>(cm =>
             {
                 cm.MapProperty(project => project.Id);
                 cm.MapProperty(project => project.Title);
-                cm.MapCreator(project => new CutedProject(project.Id, project.Title));
+                cm.MapCreator(project => new CutProject(project.Id, project.Title));
             });
             var tokenKey = "This is my test private key";
             var key = Encoding.ASCII.GetBytes(tokenKey);
@@ -71,6 +74,7 @@ namespace ManagersApi
                 });
             services.AddSingleton(x =>
                 new JWTAuthenticationManager(tokenKey));
+            
             
         }
 

@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ManagersApi.DataBase;
 using MongoDB.Driver;
 
 namespace ManagersApi
 {
-    public class DataBase
+    public class MongoDB : IDataBase
     {
         private MongoClient Client;
         private IMongoDatabase db;
 
-        public DataBase()
+        public MongoDB()
         {
-            Client = new MongoClient(
+            Client = new MongoClient(//TODO вынести в cfg
                 "mongodb+srv://69raccoon96:,fhf,fY1@cluster0.zdu2b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
             db = Client.GetDatabase("Managers");
         }
@@ -34,9 +35,9 @@ namespace ManagersApi
             return collection.Find(x => x.Id == id).First();
         }
 
-        public List<CutedProject> GetProjects(string part)
+        public List<CutProject> GetProjects(string part)
         {
-            var collection = db.GetCollection<CutedProject>("Projects");
+            var collection = db.GetCollection<CutProject>("Projects");
             return collection.Find(x => x.Title.ToUpper().Contains(part.ToUpper())).ToList();
         }
 

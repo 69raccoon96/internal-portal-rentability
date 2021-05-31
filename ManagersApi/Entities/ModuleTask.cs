@@ -4,13 +4,10 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace ManagersApi
 {
+    [BsonIgnoreExtraElements]
+    [BsonNoId]
     public class ModuleTask
     {
-        [JsonIgnore]
-        [BsonId]
-        [BsonRepresentation(BsonType.ObjectId)]
-        public string _id { get; set; }
-
         [JsonIgnore] public int Id { get; set; }
         
         public string Name { get; set; }

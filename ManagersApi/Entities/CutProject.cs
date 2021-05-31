@@ -5,9 +5,9 @@ using MongoDB.Bson.Serialization.Attributes;
 namespace ManagersApi
 {
     [BsonIgnoreExtraElements]
-    public class CutedProject
+    public class CutProject
     {
-        public CutedProject(int projectId, string projectTitle)
+        public CutProject(int projectId, string projectTitle)
         {
             Id = projectId;
             Title = projectTitle;
