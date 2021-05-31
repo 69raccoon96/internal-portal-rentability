@@ -26,11 +26,11 @@ namespace ManagersApi.Auth
             if (user == null)
                 return null;
             
-            user.Token = GenerateTokenString(username, DateTime.UtcNow);
+            user.Token = GenerateTokenString(user.Id, user.UserType, DateTime.UtcNow);
             return user;
         }
 
-        string GenerateTokenString(string username, DateTime expires, Claim[] claims = null)
+        string GenerateTokenString(int userId,UserType userType, DateTime expires, Claim[] claims = null)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(tokenKey);
@@ -39,8 +39,8 @@ namespace ManagersApi.Auth
                 Subject = new ClaimsIdentity(
                     new Claim[]
                     {
-                        new Claim(ClaimTypes.Name, username),
-
+                        new Claim(ClaimTypes.Sid, userId.ToString()),
+                        new Claim(ClaimTypes.Role, userType.ToString()), 
                     }),
                 Expires = expires.AddYears(2),
                 SigningCredentials = new SigningCredentials(

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using ManagersApi.DataBase;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,14 @@ namespace ManagersApi.Controllers
             [FromQuery(Name = "type")] ProjectStatus status)
         {
             var projectsCards = db.GetProjectsWithoutModules();
+            var ident = HttpContext.User.Identity as ClaimsIdentity;
+            var (id, role) = Utilities.ParseClaims(ident);
+            if (ident == null)
+                BadRequest();
+            if (role == UserType.Manager)
+            {
+                managersIds = new[] {id};
+            }
             var projectsCleaner = new FluentApiProjects(projectsCards);
             projectsCleaner.SetProjectStatus(status)
                 .SetProjectId(projectsIds)

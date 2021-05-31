@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Security.Claims;
 
 namespace ManagersApi
 {
@@ -41,6 +43,23 @@ namespace ManagersApi
                 timePlaned += task.TimePlaned;
             }
             return new Tuple<int, int>(timePlaned, timeFact);
+        }
+
+        public static Tuple<int, UserType> ParseClaims(ClaimsIdentity identity)
+        {
+            if (identity == null)
+                return null;
+            var stringRole = identity.Claims.Where(c => c.Type == ClaimTypes.Role)
+                .Select(c => c.Value).SingleOrDefault();
+            var sid = identity.Claims.Where(c => c.Type == ClaimTypes.Sid)
+                .Select(c => c.Value).SingleOrDefault();
+            if (stringRole == null || sid == null)
+                return null;
+            if(!Enum.TryParse<UserType>(stringRole, out var role))
+                return null;
+            if (!int.TryParse(sid, out var id))
+                return null;
+            return new Tuple<int, UserType>(id,role);
         }
     }
 }

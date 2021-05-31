@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using ManagersApi.DataBase;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
@@ -17,10 +18,18 @@ namespace ManagersApi.Controllers
         public ManagerController(IDataBase db) : base(db)
         {
         }
+
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(db.GetManagers());
+            var ident = HttpContext.User.Identity as ClaimsIdentity;
+            var (id, role) = Utilities.ParseClaims(ident);
+            if (ident == null)
+                BadRequest();
+            var managers = db.GetManagers();
+            if (role == UserType.Leader)
+                return Ok(managers);
+            return Ok(managers.Where(x => x.Id == id));
         }
     }
 }

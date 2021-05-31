@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using ManagersApi.DataBase;
 using ManagersApi.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -24,6 +25,12 @@ namespace ManagersApi.Controllers
             [FromQuery(Name = "type")] ProjectStatus status)
         { 
             var projectsCards = db.GetProjectsWithoutModules();
+            var ident = HttpContext.User.Identity as ClaimsIdentity;
+            var (id, role) = Utilities.ParseClaims(ident);
+            if (ident == null)
+                BadRequest();
+            if (role == UserType.Manager)
+                managerId = new[] {id};
             var projectsCleaner = new FluentApiProjects(projectsCards);
             var projects = projectsCleaner
                 .SetProjectStatus(status)
@@ -47,6 +54,12 @@ namespace ManagersApi.Controllers
         public IActionResult GetBrief([FromQuery(Name = "managersIds")] int[] managerId)
         {
             var result = new List<Brief>();
+            var ident = HttpContext.User.Identity as ClaimsIdentity;
+            var (id, role) = Utilities.ParseClaims(ident);
+            if (ident == null)
+                BadRequest();
+            if (role == UserType.Manager)
+                managerId = new[] {id};
             var managers = db.GetManagers().Where(x => managerId.Contains(x.Id)).ToList();
             var projects = db.GetAllProjectsData();
             foreach (var manager in managers)
@@ -75,28 +88,44 @@ namespace ManagersApi.Controllers
         public IActionResult GetOverdueDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var filter = new Func<int, int, bool>((timePlaned, timeFact) => timeFact <= timePlaned);
-            return Ok(GetDataForModules(projectId,filter));
+            var ident = HttpContext.User.Identity as ClaimsIdentity;
+            var (id, role) = Utilities.ParseClaims(ident);
+            if (ident == null)
+                BadRequest();
+            return Ok(GetDataForModules(projectId,filter, id, role));
         }
 
         [HttpGet("overdue/tasks")]
         public IActionResult GetOverdueDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var filter = new Func<ModuleTask, bool>(x => x.TimePlaned < x.Total);
-            return Ok(GetDataForTasks(projectId, filter));
+            var ident = HttpContext.User.Identity as ClaimsIdentity;
+            var (id, role) = Utilities.ParseClaims(ident);
+            if (ident == null)
+                BadRequest();
+            return Ok(GetDataForTasks(projectId, filter, id, role));
         }
 
         [HttpGet("overrated/modules")]
         public IActionResult GetOverratedDataModules([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var filter = new Func<int, int, bool>((timePlaned, timeFact) => timeFact >= timePlaned);
-            return Ok(GetDataForModules(projectId,filter));
+            var ident = HttpContext.User.Identity as ClaimsIdentity;
+            var (id, role) = Utilities.ParseClaims(ident);
+            if (ident == null)
+                BadRequest();
+            return Ok(GetDataForModules(projectId,filter, id, role));
         }
 
         [HttpGet("overrated/tasks")]
         public IActionResult GetOverratedDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var filter = new Func<ModuleTask, bool>(x => x.TimePlaned > x.Total);
-            return Ok(GetDataForTasks(projectId, filter));
+            var ident = HttpContext.User.Identity as ClaimsIdentity;
+            var (id, role) = Utilities.ParseClaims(ident);
+            if (ident == null)
+                BadRequest();
+            return Ok(GetDataForTasks(projectId, filter, id, role));
         }
 
         [HttpGet("projects")]
@@ -134,12 +163,15 @@ namespace ManagersApi.Controllers
             return projectCleaner.SetProjectId(projectsIds).GetProjects();
         }
 
-        private AnaliticData GetDataForTasks(int[] projectId, Func<ModuleTask,bool> filter)
+        private AnaliticData GetDataForTasks(int[] projectId, Func<ModuleTask,bool> filter, int id, UserType role)
         {
             var result = new AnaliticData();
             var planedTime = 0;
             var factTime = 0;
-            foreach (var project in GetClearedProjects(projectId))
+            var projects = GetClearedProjects(projectId);
+            if (role == UserType.Manager)
+                projects = projects.Where(x => x.ManagerId == id).ToList();
+            foreach (var project in projects)
             {
                 foreach (var module in project.Modules)
                 {
@@ -158,12 +190,15 @@ namespace ManagersApi.Controllers
             return result;
         }
 
-        private AnaliticData GetDataForModules(int[] projectId, Func<int, int, bool> filter)
+        private AnaliticData GetDataForModules(int[] projectId, Func<int, int, bool> filter, int id, UserType role)
         {
             var result = new AnaliticData();
             var planedTime = 0;
             var factTime = 0;
-            foreach (var project in GetClearedProjects(projectId))
+            var projects = GetClearedProjects(projectId);
+            if (role == UserType.Manager)
+                projects = projects.Where(x => x.ManagerId == id).ToList();
+            foreach (var project in projects)
             {
                 foreach (var module in project.Modules)
                 {

@@ -1,4 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using ManagersApi.DataBase;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +20,14 @@ namespace ManagersApi.Controllers
         public IActionResult GetProjects([FromQuery(Name = "partOfTheName")] string name)
         {
             name ??= "";
-            return Ok(db.GetProjects(name));
+            var projects = db.GetProjects(name);
+            var ident = HttpContext.User.Identity as ClaimsIdentity;
+            var (id, role) = Utilities.ParseClaims(ident);
+            if (ident == null)
+                BadRequest();
+            if (role == UserType.Manager) 
+                projects = projects.Where(x => x.Id == id).ToList();
+            return Ok(projects);
         }
     }
 }
