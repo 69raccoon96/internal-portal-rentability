@@ -18,7 +18,7 @@ namespace ManagersApi.Controllers
         [HttpGet]
         public IActionResult GetProject([FromQuery(Name = "id")] int id)
         {
-            var project = db.GetProjectsById(id);
+            var project = db.GetProjectById(id);
             if (project == null)
                 return null;
             var ident = HttpContext.User.Identity as ClaimsIdentity;

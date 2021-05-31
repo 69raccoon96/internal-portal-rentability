@@ -16,7 +16,10 @@ namespace ManagersApi
                 "mongodb+srv://69raccoon96:,fhf,fY1@cluster0.zdu2b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority");
             db = Client.GetDatabase("Managers");
         }
-
+        /// <summary>
+        /// aaa
+        /// </summary>
+        /// <returns></returns>
         public List<Manager> GetManagers()
         {
             var collection = db.GetCollection<Manager>("Managers");
@@ -29,7 +32,7 @@ namespace ManagersApi
             return collection.Find(_ => true).ToListAsync().Result;
         }
 
-        public Project GetProjectsById(int id)
+        public Project GetProjectById(int id)
         {
             var collection = db.GetCollection<Project>("Projects");
             return collection.Find(x => x.Id == id).First();

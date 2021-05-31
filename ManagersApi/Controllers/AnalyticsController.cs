@@ -38,7 +38,7 @@ namespace ManagersApi.Controllers
                 .SetManagers(managerId)
                 .SetCustomers(customerId)
                 .SetProjectStatus(status)
-                .SetProjectsBrackets(dateStart, dateEnd)
+                .SetProjectsBorders(dateStart, dateEnd)
                 .SetManagerData()
                 .SetCustomerData()
                 .SetOverdueData()

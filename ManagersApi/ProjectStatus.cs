@@ -4,6 +4,9 @@ using System.Text.Json.Serialization;
 
 namespace ManagersApi
 {
+    /// <summary>
+    /// Enum which represent status of project
+    /// </summary>
     [JsonConverter(typeof(JsonStringEnumMemberConverter))]
     [Flags]
     public enum ProjectStatus
