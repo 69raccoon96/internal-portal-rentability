@@ -97,5 +97,24 @@ namespace ManagersApi
             var collection = db.GetCollection<Project>("Projects");
             return collection.Find(_ => true).ToListAsync().Result;
         }
+
+        public int GetManagerIdByName(string name)
+        {
+            var collection = db.GetCollection<Manager>("Managers");
+            var manager = collection.Find(_ => true).ToListAsync().Result;
+            return manager.First(x => x.FirstName + " " + x.LastName == name).Id;
+        }
+
+        public int GetCustomerIdByName(string name)
+        {
+            var collection = db.GetCollection<Customer>("Customers");
+            var customer = collection.Find(_ => true).ToListAsync().Result;
+            return customer.First(x => x.FirstName + " " + x.LastName == name).Id;
+        }
+
+        public void PasteProjectToDataBase(Project project)
+        {
+            db.GetCollection<Project>("Projects").InsertOne(project);
+        }
     }
 }

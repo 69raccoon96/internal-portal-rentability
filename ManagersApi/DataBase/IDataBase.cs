@@ -79,5 +79,10 @@ namespace ManagersApi.DataBase
         /// </summary>
         /// <returns>Projects</returns>
         public List<Project> GetProjectsWithoutModules();
+
+        public int GetManagerIdByName(string name);
+        public int GetCustomerIdByName(string name);
+
+        public void PasteProjectToDataBase(Project project);
     }
 }

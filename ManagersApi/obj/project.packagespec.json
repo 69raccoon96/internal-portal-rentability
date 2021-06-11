@@ -30,6 +30,10 @@
   "frameworks": {
     "netcoreapp5.0": {
       "dependencies": {
+        "Atlassian.SDK": {
+          "target": "Package",
+          "version": "[12.4.0, )"
+        },
         "Macross.Json.Extensions": {
           "target": "Package",
           "version": "[2.1.0-beta2, )"

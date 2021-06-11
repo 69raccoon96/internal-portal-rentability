@@ -10,7 +10,7 @@ namespace ManagersApi
     [BsonNoId]
     public class Project
     {
-
+        public ObjectId _id { get; set; }
         public int Id { get; set; }
         [BsonIgnore]
         public Customer Customer { get; set; }
@@ -18,7 +18,9 @@ namespace ManagersApi
         public Manager Manager { get; set; }
 
         public string Title { get; set; }
+        [BsonIgnore]
         public int OverdueTime { get; set; }
+        [BsonIgnore]
         public int OverdueTasks { get; set; }
         public DateTime DateStart { get; set; }
         public DateTime DateEnd { get; set; }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ManagersApi.Authorization;
 using ManagersApi.DataBase;
+using ManagersApi.JiraWorkers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,7 +17,9 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Serializers;
 
 namespace ManagersApi
 {
@@ -82,7 +85,8 @@ namespace ManagersApi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            
+            BsonSerializer.RegisterSerializer(new EnumSerializer<ProjectStatus>(BsonType.String));
+            //var task = Task.Run(() => jiraProvider.JiraApi());
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

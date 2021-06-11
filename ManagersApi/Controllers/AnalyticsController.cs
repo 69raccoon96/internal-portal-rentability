@@ -211,6 +211,7 @@ namespace ManagersApi.Controllers
                 {
                     foreach (var task in module.Tasks.Where(filter))
                     {
+                        Console.WriteLine("I am working");
                         planedTime += task.TimePlaned;
                         factTime += task.Total;
                         result.Data.Add(new AnalyticSubparagraph(task.Name, task.TimePlaned, task.Total,
@@ -236,6 +237,7 @@ namespace ManagersApi.Controllers
             {
                 foreach (var module in project.Modules)
                 {
+                    Console.WriteLine(module.Name);
                     var (timePlaned, timeFact) = Utilities.GetTimePlanedAndFact(module);
                     if (filter(timePlaned, timeFact)) continue;
                     var elementToAdd = new AnalyticSubparagraph();
