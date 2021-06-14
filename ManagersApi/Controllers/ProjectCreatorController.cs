@@ -22,9 +22,8 @@ namespace ManagersApi.Controllers
         [HttpPost("projectcard")]
         public IActionResult CreateProject([FromBody] ProjectCreation projectCreation)
         {
-            var customerId = db.GetCustomerIdByName(projectCreation.Customer);
             var project = db.GetProjectById(projectCreation.Id);
-            project.CustomerId = customerId;
+            project.CustomerId = projectCreation.CustomerId;
             project.DateStart = projectCreation.DateStart;
             project.DateEnd = projectCreation.DateEnd;
             if(db.UpdateProject(project))
