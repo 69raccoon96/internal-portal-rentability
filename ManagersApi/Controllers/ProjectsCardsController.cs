@@ -51,7 +51,8 @@ namespace ManagersApi.Controllers
                 .SetManagerData()
                 .SetCustomerData()
                 .SetOverdueData();
-            return Ok(projectsCleaner.GetProjects());
+            var projects = projectsCleaner.GetProjects();
+            return Ok(projects);
         }
     }
 }
