@@ -112,9 +112,10 @@ namespace ManagersApi
             return customer.First(x => x.FirstName + " " + x.LastName == name).Id;
         }
 
-        public void PasteProjectToDataBase(Project project)
+        public bool UpdateProject(Project project)
         {
-            db.GetCollection<Project>("Projects").InsertOne(project);
+            var filter = db.GetCollection<Project>("Projects").ReplaceOne(x => x.Id == project.Id, project);
+            return filter.IsAcknowledged;
         }
     }
 }

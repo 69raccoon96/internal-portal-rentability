@@ -11,33 +11,25 @@ namespace ManagersApi.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("createProject")]
+    [Route("create")]
     [EnableCors]
     public class ProjectCreatorController : BaseControllerWithDb
     {
         public ProjectCreatorController(IDataBase db) : base(db)
         {
         }
-        [HttpPost]
+
+        [HttpPost("projectcard")]
         public IActionResult CreateProject([FromBody] ProjectCreation projectCreation)
         {
-            var projects = db.GetAllProjectsData();
-            var currentId = projects.Max(x => x.Id);
-            var project = new Project
-            {
-                Id = ++currentId,
-                Title = projectCreation.Name,
-                DateEnd = projectCreation.Date,
-                DateStart = DateTime.Now,
-                ManagerId = db.GetManagerIdByName(projectCreation.Manager),
-                CustomerId = db.GetCustomerIdByName(projectCreation.Customer),
-                ModuleIds = new int[0],
-                _id = new ObjectId(),
-                ProjectStatus = ProjectStatus.Active
-            };
-            db.PasteProjectToDataBase(project);
-            return Ok();
+            var customerId = db.GetCustomerIdByName(projectCreation.Customer);
+            var project = db.GetProjectById(projectCreation.Id);
+            project.CustomerId = customerId;
+            project.DateStart = projectCreation.DateStart;
+            project.DateEnd = projectCreation.DateEnd;
+            if(db.UpdateProject(project))
+                return Ok();
+            return BadRequest();
         }
-        
     }
 }

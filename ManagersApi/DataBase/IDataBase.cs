@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ManagersApi.Entities;
 
 namespace ManagersApi.DataBase
 {
@@ -83,6 +84,6 @@ namespace ManagersApi.DataBase
         public int GetManagerIdByName(string name);
         public int GetCustomerIdByName(string name);
 
-        public void PasteProjectToDataBase(Project project);
+        public bool UpdateProject(Project project);
     }
 }

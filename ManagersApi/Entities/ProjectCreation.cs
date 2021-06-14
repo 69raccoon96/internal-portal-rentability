@@ -7,7 +7,9 @@ namespace ManagersApi.Entities
         public string Name { get; set; }
         public string Customer { get; set; }
         public string Manager { get; set; }
-        public DateTime Date { get; set; }
+        public int Id { get; set; }
+        public DateTime DateStart { get; set; }
+        public DateTime DateEnd { get; set; }
         
     }
 }
