@@ -2,6 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using ManagersApi.DataBase;
 using Microsoft.IdentityModel.Tokens;
 
 namespace ManagersApi.Authorization
@@ -11,14 +12,14 @@ namespace ManagersApi.Authorization
     /// </summary>
     public class JWTAuthenticationManager
     {
-        private readonly MongoDB db;
+        private readonly IDataBase db;
 
         private readonly string tokenKey;
 
-        public JWTAuthenticationManager(string tokenKey)
+        public JWTAuthenticationManager(string tokenKey, IDataBase db)
         {
             this.tokenKey = tokenKey;
-            db = new MongoDB();
+            this.db = db;
         }
         /// <summary>
         /// Generate token if username and password are correct

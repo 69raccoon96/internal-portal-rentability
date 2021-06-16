@@ -7,7 +7,8 @@ namespace ManagersApi
     /// <summary>
     /// Class which represent methods that can not be storage at one class
     /// </summary>
-    public static class Utilities
+    public static class 
+        Utilities
     {
         /// <summary>
         /// Calculate sum of overdue time in all modules of project and count of overdue modules

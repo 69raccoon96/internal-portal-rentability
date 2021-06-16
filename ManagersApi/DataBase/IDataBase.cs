@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using ManagersApi.Entities;
+using ManagersApi.JiraWorkers;
+using MongoDB.Bson;
 
 namespace ManagersApi.DataBase
 {
@@ -85,5 +87,18 @@ namespace ManagersApi.DataBase
         public int GetCustomerIdByName(string name);
 
         public bool UpdateProject(Project project);
+
+        public void InsertProjects(IEnumerable<Project> projects);
+        public void InsertTasks(IEnumerable<ModuleTask> tasks);
+        public void InsertModules(IEnumerable<Module> modules);
+        public void InsertManagers(IEnumerable<Manager> managers);
+
+        public List<Module> GetAllModules();
+        public List<ModuleTask> GetAllModuleTask();
+
+        public void UpdateManagers(IEnumerable<Manager> managers);
+        public void UpdateProjects(IEnumerable<Project> projects);
+        public void UpdateModules(IEnumerable<Module> modules);
+        public void UpdateTasks(IEnumerable<ModuleTask> tasks);
     }
 }
