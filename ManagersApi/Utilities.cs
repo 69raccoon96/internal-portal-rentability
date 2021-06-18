@@ -38,8 +38,8 @@ namespace ManagersApi
         /// and second is count of tasks which was overdue</returns>
         public static Tuple<int, int> GetOverdueTask(Module module)
         {
-            var overdueTask = 0;
-            var overdueTime = 0;
+            var overdueTask = 0.0;
+            var overdueTime = 0.0;
             foreach (var task in module.Tasks)
             {
                 var dif = task.TimePlanned - task.Total;
@@ -48,7 +48,7 @@ namespace ManagersApi
                 overdueTask++;
             }
 
-            return new Tuple<int, int>(overdueTime, overdueTask);
+            return new Tuple<int, int>((int)overdueTime, (int)overdueTask);//TODO need fix
         }
 
         /// <summary>
@@ -58,15 +58,15 @@ namespace ManagersApi
         /// <returns>Returns tuple where first element is time planed and second is factial time</returns>
         public static Tuple<int, int> GetTimePlanedAndFact(Module module)
         {
-            var timePlaned = 0;
-            var timeFact = 0;
+            var timePlaned = 0.0;
+            var timeFact = 0.0;
             foreach (var task in module.Tasks)
             {
                 timeFact += task.Total;
                 timePlaned += task.TimePlanned;
             }
 
-            return new Tuple<int, int>(timePlaned, timeFact);
+            return new Tuple<int, int>((int)timePlaned, (int)timeFact);//TODO need fix
         }
 
         /// <summary>

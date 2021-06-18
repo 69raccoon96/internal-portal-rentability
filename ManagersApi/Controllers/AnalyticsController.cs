@@ -200,8 +200,8 @@ namespace ManagersApi.Controllers
         private AnaliticData GetDataForTasks(int[] projectId, Func<ModuleTask,bool> filter, int id, UserType role)
         {
             var result = new AnaliticData();
-            var planedTime = 0;
-            var factTime = 0;
+            var planedTime = 0.0;
+            var factTime = 0.0;
             var projects = GetClearedProjects(projectId);
             if (role == UserType.Manager)
                 projects = projects.Where(x => x.ManagerId == id).ToList();
@@ -214,14 +214,14 @@ namespace ManagersApi.Controllers
                         Console.WriteLine("I am working");
                         planedTime += task.TimePlanned;
                         factTime += task.Total;
-                        result.Data.Add(new AnalyticSubparagraph(task.Name, task.TimePlanned, task.Total,
+                        result.Data.Add(new AnalyticSubparagraph(task.Name, (int)task.TimePlanned, (int)task.Total,
                             project.Title));
                     }
                 }
             }
 
-            result.TimeSpent = factTime;
-            result.TimePlanned = planedTime;
+            result.TimeSpent = (int)factTime;
+            result.TimePlanned = (int)planedTime;//TODO fix
             return result;
         }
 
