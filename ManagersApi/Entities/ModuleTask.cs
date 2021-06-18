@@ -14,13 +14,13 @@ namespace ManagersApi
 
         public int Total { get; set; }
 
-        public int TimePlaned { get; set; }
+        public int TimePlanned { get; set; }
         
         public bool IsDone { get; set; }
         public ModuleTask(int id, int total, int timePlanned, bool isDone, string name)
         {
             Id = id;
-            TimePlaned = timePlanned;
+            TimePlanned = timePlanned;
 
             Total = total;
             IsDone = isDone;
@@ -40,7 +40,7 @@ namespace ManagersApi
                 return false;
             if (task.Total != Total)
                 return false;
-            if (task.TimePlaned != TimePlaned)
+            if (task.TimePlanned != TimePlanned)
                 return false;
             return true;
         }

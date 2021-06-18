@@ -120,7 +120,7 @@ namespace ManagersApi.Controllers
         [HttpGet("overdue/tasks")]
         public IActionResult GetOverdueDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
-            var filter = new Func<ModuleTask, bool>(x => x.TimePlaned < x.Total);
+            var filter = new Func<ModuleTask, bool>(x => x.TimePlanned < x.Total);
             var ident = HttpContext.User.Identity as ClaimsIdentity;
             var (id, role) = Utilities.ParseClaims(ident);
             if (ident == null)
@@ -150,7 +150,7 @@ namespace ManagersApi.Controllers
         [HttpGet("overrated/tasks")]
         public IActionResult GetOverratedDataTasks([FromQuery(Name = "projectsIds")] int[] projectId)
         {
-            var filter = new Func<ModuleTask, bool>(x => x.TimePlaned > x.Total);
+            var filter = new Func<ModuleTask, bool>(x => x.TimePlanned > x.Total);
             var ident = HttpContext.User.Identity as ClaimsIdentity;
             var (id, role) = Utilities.ParseClaims(ident);
             if (ident == null)
@@ -212,9 +212,9 @@ namespace ManagersApi.Controllers
                     foreach (var task in module.Tasks.Where(filter))
                     {
                         Console.WriteLine("I am working");
-                        planedTime += task.TimePlaned;
+                        planedTime += task.TimePlanned;
                         factTime += task.Total;
-                        result.Data.Add(new AnalyticSubparagraph(task.Name, task.TimePlaned, task.Total,
+                        result.Data.Add(new AnalyticSubparagraph(task.Name, task.TimePlanned, task.Total,
                             project.Title));
                     }
                 }

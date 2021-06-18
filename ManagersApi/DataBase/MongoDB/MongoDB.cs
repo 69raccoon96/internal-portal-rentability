@@ -156,7 +156,7 @@ namespace ManagersApi
                     {"_id", new BsonObjectId(new ObjectId())},
                     {"Id", task.Id},
                     {"Total", task.Total},
-                    {"TimePlaned", task.TimePlaned},
+                    {"TimePlaned", task.TimePlanned},
                     {"IsDone", task.IsDone},
                     {"Name", task.Name}
                 };

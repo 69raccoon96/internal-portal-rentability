@@ -42,7 +42,7 @@ namespace ManagersApi
             var overdueTime = 0;
             foreach (var task in module.Tasks)
             {
-                var dif = task.TimePlaned - task.Total;
+                var dif = task.TimePlanned - task.Total;
                 if (dif >= 0) continue;
                 overdueTime += dif * -1;
                 overdueTask++;
@@ -63,7 +63,7 @@ namespace ManagersApi
             foreach (var task in module.Tasks)
             {
                 timeFact += task.Total;
-                timePlaned += task.TimePlaned;
+                timePlaned += task.TimePlanned;
             }
 
             return new Tuple<int, int>(timePlaned, timeFact);
