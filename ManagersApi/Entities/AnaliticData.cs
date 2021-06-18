@@ -4,7 +4,7 @@ namespace ManagersApi.Entities
 {
     public class AnaliticData
     {
-        public int TimePlaned { get; set; }
+        public int TimePlanned { get; set; }
         public int TimeSpent { get; set; }
         public List<AnalyticSubparagraph> Data { get; set; }
 

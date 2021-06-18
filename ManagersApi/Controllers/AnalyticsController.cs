@@ -186,7 +186,7 @@ namespace ManagersApi.Controllers
             }
 
             result.TimeSpent = factTime;
-            result.TimePlaned = planedTime;
+            result.TimePlanned = planedTime;
             return Ok(result);
         }
 
@@ -221,7 +221,7 @@ namespace ManagersApi.Controllers
             }
 
             result.TimeSpent = factTime;
-            result.TimePlaned = planedTime;
+            result.TimePlanned = planedTime;
             return result;
         }
 
@@ -252,7 +252,7 @@ namespace ManagersApi.Controllers
             }
 
             result.TimeSpent = factTime;
-            result.TimePlaned = planedTime;
+            result.TimePlanned = planedTime;
             return result;
         }
 
