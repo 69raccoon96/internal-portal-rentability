@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,12 +15,14 @@ namespace ManagersApi.JiraWorkers
 
             var dic = new Dictionary<string, int>();
 
-            var jira = Jira.CreateRestClient("https://jira.66bit.ru/jira/", "69raccoon96", ",fhf,fY1");
+            var jira = Jira.CreateRestClient("https://jira.66bit.ru/jira/", "vasyasin.dmitrii", "VtPfKmZyC58963214"); //dmitrii can't see PZ project
+            //var jira = Jira.CreateRestClient("https://jira.66bit.ru/jira/", "69raccoon96", ",fhf,fY1"); //raccoon can't see TESTR project
 
+            //need to rewrite using IssueSearchOptions for better results
             var issueAndEpics = jira.Issues.GetIssuesFromJqlAsync("", 600, 0).Result;
 
             var managid = 1;
-            Console.WriteLine("try get issues and epics");
+            Console.WriteLine("try get issues and epics(and fill array with managers)");
             foreach (var i in issueAndEpics)
             {
                 if (dic.ContainsKey(i.AssigneeUser.Key))
@@ -76,11 +78,11 @@ namespace ManagersApi.JiraWorkers
                 var time = 0;
                 var total = 0;
                 if (i.TimeTrackingData.OriginalEstimateInSeconds.HasValue)
-                    time = (int) i.TimeTrackingData.OriginalEstimateInSeconds;
+                    time = (double)(i.TimeTrackingData.OriginalEstimateInSeconds / 60.0 / 60.0);
                 if (i.TimeTrackingData.TimeSpentInSeconds.HasValue)
-                    total = (int) i.TimeTrackingData.TimeSpentInSeconds;
+                    total = (double)(i.TimeTrackingData.TimeSpentInSeconds / 60.0 / 60.0);
                 Console.WriteLine("added " + i.Project);
-                jiraData.Tasks.Add(new ModuleTask(issueCounter++, total, time, i.Status.Name == "Done", i.Key.Value));
+                jiraData.Tasks.Add(new ModuleTask(issueCounter++, Math.Round(total, 2), Math.Round(time, 2), i.Status.Name == "Done", i.Key.Value));
             }
 
             return jiraData;
