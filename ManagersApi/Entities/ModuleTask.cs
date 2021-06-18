@@ -1,4 +1,4 @@
-﻿using System.Text.Json.Serialization;
+using System.Text.Json.Serialization;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -12,12 +12,12 @@ namespace ManagersApi
         
         public string Name { get; set; }
 
-        public int Total { get; set; }
+        public double Total { get; set; }
 
-        public int TimePlanned { get; set; }
+        public double TimePlanned { get; set; }
         
         public bool IsDone { get; set; }
-        public ModuleTask(int id, int total, int timePlanned, bool isDone, string name)
+        public ModuleTask(int id, double total, double timePlanned, bool isDone, string name)
         {
             Id = id;
             TimePlanned = timePlanned;
