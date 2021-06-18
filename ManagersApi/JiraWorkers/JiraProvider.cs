@@ -75,8 +75,8 @@ namespace ManagersApi.JiraWorkers
                 if (dic.ContainsKey(i["Epic Link"].ToString()))
                     jiraData.Modules.First(x => x.Id == dic[i["Epic Link"].Value]).AddId(issueCounter);
 
-                var time = 0;
-                var total = 0;
+                var time = 0.0;
+                var total = 0.0;
                 if (i.TimeTrackingData.OriginalEstimateInSeconds.HasValue)
                     time = (double)(i.TimeTrackingData.OriginalEstimateInSeconds / 60.0 / 60.0);
                 if (i.TimeTrackingData.TimeSpentInSeconds.HasValue)
