@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -80,12 +80,12 @@ namespace ManagersApi.Controllers
             {
                 var valueToAdd = new Brief {FullName = manager.FirstName + " " + manager.LastName};
                 var managerProjects = projects.Where(x => x.ManagerId == manager.Id);
-                var allTime = 0;
+                var allTime = 0.0;
                 var projectsCount = 0;
                 foreach (var project in managerProjects)
                 {
                     var (overdueTime, overdueTask) = Utilities.GetOverdueModules(project);
-                    if (overdueTime == 0) continue;
+                    if (overdueTime == 0.0) continue;
                     projectsCount++;
                     allTime += overdueTime;
                 }
@@ -166,8 +166,8 @@ namespace ManagersApi.Controllers
         public IActionResult GetOverratedDataProjects([FromQuery(Name = "projectsIds")] int[] projectId)
         {
             var result = new AnaliticData();
-            var planedTime = 0;
-            var factTime = 0;
+            var planedTime = 0.0;
+            var factTime = 0.0;
             foreach (var project in GetClearedProjects(projectId))
             {
                 var analyticModule = new AnalyticSubparagraph();
@@ -228,8 +228,8 @@ namespace ManagersApi.Controllers
         private AnaliticData GetDataForModules(int[] projectId, Func<int, int, bool> filter, int id, UserType role)
         {
             var result = new AnaliticData();
-            var planedTime = 0;
-            var factTime = 0;
+            var planedTime = 0.0;
+            var factTime = 0.0;
             var projects = GetClearedProjects(projectId);
             if (role == UserType.Manager)
                 projects = projects.Where(x => x.ManagerId == id).ToList();
