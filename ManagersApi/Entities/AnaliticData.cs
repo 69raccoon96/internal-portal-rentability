@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace ManagersApi.Entities
 {
     public class AnaliticData
     {
-        public int TimePlanned { get; set; }
-        public int TimeSpent { get; set; }
+        public double TimePlanned { get; set; }
+        public double TimeSpent { get; set; }
         public List<AnalyticSubparagraph> Data { get; set; }
 
         public AnaliticData()
