@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Security.Claims;
 
@@ -16,9 +16,9 @@ namespace ManagersApi
         /// <param name="project">Project to inspect</param>
         /// <returns>Returns tuple, where first element is time which manager overdue at all modules of current project
         /// and second is count of modules which was overdue</returns>
-        public static Tuple<int, int> GetOverdueModules(Project project)
+        public static Tuple<double, int> GetOverdueModules(Project project)
         {
-            var overdueTime = 0;
+            var overdueTime = 0.0;
             var overdueTask = 0;
             foreach (var module in project.Modules)
             {
@@ -27,7 +27,7 @@ namespace ManagersApi
                 overdueTime += time;
             }
 
-            return new Tuple<int, int>(overdueTime, overdueTask);
+            return new Tuple<double, int>(overdueTime, overdueTask);
         }
 
         /// <summary>
@@ -36,9 +36,9 @@ namespace ManagersApi
         /// <param name="module">Module to inspect</param>
         /// <returns>Returns tuple, where first element is time which manager overdue at all tasks of current module
         /// and second is count of tasks which was overdue</returns>
-        public static Tuple<int, int> GetOverdueTask(Module module)
+        public static Tuple<double, int> GetOverdueTask(Module module)
         {
-            var overdueTask = 0.0;
+            var overdueTask = 0;
             var overdueTime = 0.0;
             foreach (var task in module.Tasks)
             {
@@ -48,7 +48,7 @@ namespace ManagersApi
                 overdueTask++;
             }
 
-            return new Tuple<int, int>((int)overdueTime, (int)overdueTask);//TODO need fix
+            return new Tuple<double, int>(overdueTime, overdueTask);
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace ManagersApi
         /// </summary>
         /// <param name="module">Module to inspect</param>
         /// <returns>Returns tuple where first element is time planed and second is factial time</returns>
-        public static Tuple<int, int> GetTimePlanedAndFact(Module module)
+        public static Tuple<double, double> GetTimePlanedAndFact(Module module)
         {
             var timePlaned = 0.0;
             var timeFact = 0.0;
@@ -66,7 +66,7 @@ namespace ManagersApi
                 timePlaned += task.TimePlanned;
             }
 
-            return new Tuple<int, int>((int)timePlaned, (int)timeFact);//TODO need fix
+            return new Tuple<double, double>(timePlaned, timeFact);
         }
 
         /// <summary>
