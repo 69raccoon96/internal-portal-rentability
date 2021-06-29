@@ -1,25 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ivan\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj": {}
+    "C:\\Users\\ivan0\\Desktop\\rent\\internal-portal-rentability\\ManagersApi\\ManagersApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ivan\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj": {
+    "C:\\Users\\ivan0\\Desktop\\rent\\internal-portal-rentability\\ManagersApi\\ManagersApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ivan\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
+        "projectUniqueName": "C:\\Users\\ivan0\\Desktop\\rent\\internal-portal-rentability\\ManagersApi\\ManagersApi.csproj",
         "projectName": "ManagersApi",
-        "projectPath": "C:\\Users\\Ivan\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\ManagersApi.csproj",
-        "packagesPath": "C:\\Users\\Ivan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ivan\\RiderProjects\\internal-portal-rentability-ii\\ManagersApi\\obj\\",
+        "projectPath": "C:\\Users\\ivan0\\Desktop\\rent\\internal-portal-rentability\\ManagersApi\\ManagersApi.csproj",
+        "packagesPath": "C:\\Users\\ivan0\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ivan0\\Desktop\\rent\\internal-portal-rentability\\ManagersApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
-          "C:\\Users\\Ivan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\ivan0\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
